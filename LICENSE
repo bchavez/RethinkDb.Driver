@@ -1,3 +1,14 @@
+This is a modified Apache License:
+
+You are permitted to use, compile, execute, the code in this repository,
+as long as this driver's protocol output is not sent over the SSL/TLS 
+protocol. You are prohibited from connecting this driver to Compose.IO 
+or to any other SSL/TLS endpoint without a commercial license.
+
+To remove this limitation and permit usage over SSL/TLS, a commercial
+license must be purchased. The commercial license permitting use over
+SSL/TLS and Compose.IO is available from Bit Armory Inc.
+
 Copyright 2010-2012 RethinkDB
 
 Copyright (c) .NET Foundation. All rights reserved.

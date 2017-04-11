@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using FakeItEasy;
 using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
 using RethinkDb.Driver.Utils;
 
@@ -298,6 +302,27 @@ namespace RethinkDb.Driver.Tests.ReQL
             results[0].Items[0].Should().Be(1);
             results[1].Items[0].Should().Be(1);
             results[2].Items[0].Should().Be(1);
+        }
+
+        [Test]
+        public async Task can_test_using_mock()
+        {
+            var expectedQuery = R.Db(DbName).Table(TableName).ToRawString();
+
+            var testQuery = R.Db(DbName).Table(TableName);
+
+            var conn = A.Fake<IConnection>();
+
+            await testQuery.RunAtomAsync<Result>(conn);
+
+            A.CallTo(() =>
+                    conn.RunAtomAsync<Result>(
+                        A<ReqlAst>.That.Matches(test =>
+                            ReqlRaw.ToRawString(test) == expectedQuery),
+                        A<object>._,
+                        A<CancellationToken>._))
+                .MustHaveHappened();
+
         }
     }
 

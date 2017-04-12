@@ -58,7 +58,8 @@
         "System.Security.Cryptography.Primitives": "4.0.0",
         "System.Threading.Thread": "4.0.0",
         "System.Net.NameResolution": "4.0.0",
-        "System.Net.Security": "4.0.0"
+        "System.Net.Security": "4.0.0",
+        "System.Net.Primitives": "4.0.0"
       },
       "imports": [
         "portable-net451+win8",

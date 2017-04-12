@@ -695,7 +695,7 @@ namespace RethinkDb.Driver.Net
                 bool verified = false;
 
 #if STANDARD
-                verified = rsa.VerifyData(data, sig, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                verified = rsa.VerifyData(data, licenseData, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
 #else
                 verified = rsa.VerifyData(data, CryptoConfig.MapNameToOID("SHA256"), licenseData);
 #endif
@@ -731,7 +731,7 @@ namespace RethinkDb.Driver.Net
         /// The enabled security protocols to use over the socket.
         /// </summary>
         public SslProtocols EnabledProtocols { get; set; } = SslProtocols.Default;
-
+        
         /// <summary>
         /// By default, the connection's hostname is used. This setting can override host verification.
         /// </summary>

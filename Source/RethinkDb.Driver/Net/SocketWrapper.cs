@@ -2,7 +2,10 @@ using System;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Net;
+using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,11 +27,16 @@ namespace RethinkDb.Driver.Net
         private BinaryWriter bw = null;
         private BinaryReader br = null;
 
-        public SocketWrapper(string hostname, int port, TimeSpan? timeout, Action<Exception> errorCallback)
+        private SslContext sslContext;
+
+        private SslStream ssl = null;
+    
+        public SocketWrapper(string hostname, int port, TimeSpan? timeout, SslContext sslContext, Action<Exception> errorCallback)
         {
             this.hostname = hostname;
             this.port = port;
             this.errorCallback = errorCallback;
+            this.sslContext = sslContext;
 
             this.timeout = timeout ?? TimeSpan.FromSeconds(60);
         }
@@ -48,8 +56,25 @@ namespace RethinkDb.Driver.Net
                     .ConfigureAwait(false);
 
                 this.ns = new NetworkStream(this.socket);
-                this.bw = new BinaryWriter(this.ns);
-                this.br = new BinaryReader(this.ns);
+
+                if (this.sslContext != null)
+                {
+
+                    this.ssl = new SslStream(this.ns,
+                        leaveInnerStreamOpen: false,
+                        userCertificateValidationCallback: this.sslContext.ServerCertificateValidationCallback,
+                        userCertificateSelectionCallback: this.sslContext.LocalCertificateSelectionCallback);
+
+                    await this.ssl.AuthenticateAsClientAsync(this.sslContext.TargetHostOverride ?? this.hostname,
+                            this.sslContext.ClientCertificateCollection,
+                            this.sslContext.EnabledProtocols,
+                            this.sslContext.CheckCertificateRevocation)
+                        .ConfigureAwait(false);
+                }
+
+                this.bw = new BinaryWriter(this.ssl as Stream ?? this.ns);
+                this.br = new BinaryReader(this.ssl as Stream ?? this.ns);
+                
 
                 // execute RethinkDB handshake
                 ExecuteHandshake(handshake);
@@ -275,7 +300,6 @@ namespace RethinkDb.Driver.Net
 
         private object writeLock = new object();
 
-
         public virtual Task<Response> SendQuery(long token, string json, bool awaitResponse, CancellationToken cancelToken)
         {
             cancelToken.ThrowIfCancellationRequested();
@@ -340,6 +364,7 @@ namespace RethinkDb.Driver.Net
 
             try
             {
+                this.ssl?.Dispose();
                 this.ns.Dispose();
             }
             catch

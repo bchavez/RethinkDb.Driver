@@ -63,7 +63,8 @@ namespace RethinkDb.Driver.Net
                     this.ssl = new SslStream(this.ns,
                         leaveInnerStreamOpen: false,
                         userCertificateValidationCallback: this.sslContext.ServerCertificateValidationCallback,
-                        userCertificateSelectionCallback: this.sslContext.LocalCertificateSelectionCallback);
+                        userCertificateSelectionCallback: this.sslContext.LocalCertificateSelectionCallback,
+                        encryptionPolicy: EncryptionPolicy.RequireEncryption);
 
                     await this.ssl.AuthenticateAsClientAsync(this.sslContext.TargetHostOverride ?? this.hostname,
                             this.sslContext.ClientCertificateCollection,

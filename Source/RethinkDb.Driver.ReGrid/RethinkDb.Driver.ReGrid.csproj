@@ -44,7 +44,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyAttributes.cs" />
     <Compile Include="BaseStream.cs" />
     <Compile Include="Bucket.cs" />
     <Compile Include="Bucket.Download.cs" />

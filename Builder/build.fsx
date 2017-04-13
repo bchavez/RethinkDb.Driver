@@ -45,16 +45,22 @@ let TestGridProject = TestProject("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 open AssemblyInfoFile
 
-let MakeAttributes (includeSnk:bool) (testProject : TestProject) =
+let MakeAttributes (includeSnk:bool) (testProjects : string list ) =
     let attrs = [
                     Attribute.Description GitHubUrl
                 ]
-    if includeSnk then
-        let pubKey = ReadFileAsHexString Projects.SnkFilePublic
-        let visibleTo = sprintf "%s, PublicKey=%s" testProject.Name pubKey
-        attrs @ [ Attribute.InternalsVisibleTo(visibleTo) ]
-    else
-        attrs @ [ Attribute.InternalsVisibleTo(testProject.Name) ]
+
+    let mapInternalName (projectName : string) = 
+        if includeSnk then
+                let pubKey = ReadFileAsHexString Projects.SnkFilePublic
+                let visibleTo = sprintf "%s, PublicKey=%s" projectName pubKey
+                Attribute.InternalsVisibleTo(visibleTo)
+            else
+                Attribute.InternalsVisibleTo(projectName)
+
+    testProjects
+        |> List.map( mapInternalName )
+        |> List.append attrs
 
 
 
@@ -128,15 +134,15 @@ Target "msb" (fun _ ->
     |> Log "AppBuild-Output: "
 
     !! TestDriverProject.ProjectFile
-    |> MSBuildDebug "" "Build"
+    |> MSBuild "" "Build" (("Configuration", "Debug")::buildProps)
     |> Log "AppBuild-Output: "
 
     !! TestLinqProject.ProjectFile
-    |> MSBuildDebug "" "Build"
+    |> MSBuild "" "Build" (("Configuration", "Debug")::buildProps)
     |> Log "AppBuild-Output: "
 
     !! TestGridProject.ProjectFile
-    |> MSBuildDebug "" "Build"
+    |> MSBuild "" "Build" (("Configuration", "Debug")::buildProps)
     |> Log "AppBuild-Output: "
 )
 
@@ -208,11 +214,11 @@ Target "BuildInfo" (fun _ ->
     trace "Writing Assembly Build Info"
 
     MakeBuildInfo DriverProject Folders (fun bip ->
-        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild TestDriverProject } )
+        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild [LinqProject.Name; TestDriverProject.Name; TestLinqProject.Name] } )
     MakeBuildInfo LinqProject Folders (fun bip ->
-        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild TestLinqProject } )
+        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild [TestLinqProject.Name] } )
     MakeBuildInfo GridProject Folders (fun bip ->
-        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild TestGridProject } )
+        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild [TestGridProject.Name] } )
 
     JsonPoke "version" BuildContext.FullVersion DriverProject.ProjectJson
     JsonPoke "version" BuildContext.FullVersion LinqProject.ProjectJson
@@ -253,15 +259,15 @@ Target "Clean" (fun _ ->
     MakeBuildInfo DriverProject Folders (fun bip ->
         { bip with 
             DateTime = defaultBuildDate
-            ExtraAttrs = MakeAttributes false TestDriverProject } )
+            ExtraAttrs = MakeAttributes false [LinqProject.Name; TestDriverProject.Name; TestLinqProject.Name] } )
     MakeBuildInfo LinqProject Folders (fun bip ->
         { bip with 
             DateTime = defaultBuildDate
-            ExtraAttrs = MakeAttributes false TestLinqProject } )
+            ExtraAttrs = MakeAttributes false [TestLinqProject.Name] } )
     MakeBuildInfo GridProject Folders (fun bip ->
         { bip with 
             DateTime = defaultBuildDate
-            ExtraAttrs = MakeAttributes false TestGridProject } )
+            ExtraAttrs = MakeAttributes false [TestGridProject.Name] } )
 )
 
 open Ionic.Zip

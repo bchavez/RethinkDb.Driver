@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyInformationalVersionAttribute("0.0.0-localbuild built on 1/1/2015 12:00:00 AM")]
 [assembly: AssemblyTrademarkAttribute("Modified Apache License v2.0")]
 [assembly: AssemblyDescriptionAttribute("https://github.com/bchavez/RethinkDb.Driver")]
+[assembly: InternalsVisibleToAttribute("RethinkDb.Driver.Linq")]
 [assembly: InternalsVisibleToAttribute("RethinkDb.Driver.Tests")]
 [assembly: InternalsVisibleToAttribute("RethinkDb.Driver.Linq.Tests")]
 namespace System {
@@ -24,7 +25,8 @@ namespace System {
         internal const System.String AssemblyInformationalVersion = "0.0.0-localbuild built on 1/1/2015 12:00:00 AM";
         internal const System.String AssemblyTrademark = "Modified Apache License v2.0";
         internal const System.String AssemblyDescription = "https://github.com/bchavez/RethinkDb.Driver";
-        internal const System.String InternalsVisibleTo = "RethinkDb.Driver.Tests";
-        internal const System.String InternalsVisibleTo_1 = "RethinkDb.Driver.Linq.Tests";
+        internal const System.String InternalsVisibleTo = "RethinkDb.Driver.Linq";
+        internal const System.String InternalsVisibleTo_1 = "RethinkDb.Driver.Tests";
+        internal const System.String InternalsVisibleTo_2 = "RethinkDb.Driver.Linq.Tests";
     }
 }

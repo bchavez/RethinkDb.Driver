@@ -81,8 +81,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.7\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
+    <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.10.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.10\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

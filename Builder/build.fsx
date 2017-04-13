@@ -169,10 +169,15 @@ Target "mono" (fun _ ->
 
      let tag = "mono_build/"
 
+     let buildProps = [ 
+                        "AssemblyOriginatorKeyFile", Projects.SnkFile
+                        "SignAssembly", BuildContext.IsTaggedBuild.ToString()
+                      ]
+
      //Setup
-     XBuild DriverProject.ProjectFile (DriverProject.OutputDirectory @@ tag)
-     XBuild LinqProject.ProjectFile (LinqProject.OutputDirectory @@ tag)
-     XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag)
+     XBuild DriverProject.ProjectFile (DriverProject.OutputDirectory @@ tag) buildProps
+     XBuild LinqProject.ProjectFile (LinqProject.OutputDirectory @@ tag) buildProps
+     XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag) buildProps
 )
 
 Target "restore" (fun _ -> 

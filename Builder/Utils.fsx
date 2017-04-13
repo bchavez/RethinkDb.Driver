@@ -343,8 +343,17 @@ module Helpers =
             let buildArgs = sprintf "build --configuration Release --output %s\\%s --framework %s" output moniker moniker
             dotnet buildArgs target.Folder
 
-    let XBuild target output =
-        let buildArgs = sprintf "%s /p:OutDir=%s" target output
+    let XBuild target output (extraArgs: (string*string) list) =
+        let mapArg (prop:string, arg:string) = 
+            sprintf "/p:%s=%s" prop arg
+        
+        let argStrings = extraArgs
+                            |> List.map mapArg
+                            |> List.toArray
+        
+        let extraArgsLine = String.Join(" ", argStrings)
+
+        let buildArgs = sprintf "%s %s /p:OutDir=%s" target extraArgsLine output
         let monopath = ProgramFilesX86 @@ "Mono" @@ "bin"
 
         shellExec (monopath @@ "xbuild.bat") buildArgs ""

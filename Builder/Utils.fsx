@@ -39,10 +39,8 @@ module BuildContext =
     let Version = WithoutPreReleaseName FullVersion
 
     let IsTaggedBuild =
-        //AppVeyorEnvironment.RepoTag
-        true
+        AppVeyorEnvironment.RepoTag
         
-
 
 open System
 

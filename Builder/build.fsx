@@ -210,7 +210,7 @@ Target "zip" (fun _ ->
     !!(DriverProject.OutputDirectory @@ "**") 
         ++ (LinqProject.OutputDirectory @@ "**")
         ++ (GridProject.OutputDirectory @@ "**")
-        -- (Folders.Package @@ "**deps.json")
+        -- (Folders.CompileOutput @@ "**" @@ "*.deps.json")
         |> Zip Folders.CompileOutput (Folders.Package @@ DriverProject.Zip)
 )
 

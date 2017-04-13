@@ -343,14 +343,17 @@ Target "setup-snk"(fun _ ->
 
 //build systems
 "BuildInfo"
+    =?> ("setup-snk", BuildContext.IsTaggedBuild)
     ==> "dnx"
     ==> "zip"
 
 "BuildInfo"
+    =?> ("setup-snk", BuildContext.IsTaggedBuild)
     ==> "msb"
     ==> "zip"
 
 "BuildInfo"
+    =?> ("setup-snk", BuildContext.IsTaggedBuild)
     ==> "mono"
     ==> "zip"
 

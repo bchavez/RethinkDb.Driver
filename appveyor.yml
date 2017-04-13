@@ -1,6 +1,10 @@
 version: '{build}'
 
 
+environment:
+  SNKFILE_SECRET: #SecretDatabase.kdbx / OpenSource / RethinkDb.Driver.snk.enc
+    secure: 1P01TSc3HXOsEEVJ8DkpC2AOqY9nE6bamI74rEwLH1zH0V8uD8yc38IOJ69o3t3jFHQhdDg8yTNiMu9dOP6iarAU/NXM0kd3PggyDgL1Gak=
+
 skip_commits:
   message: /(//skip\W*ci)|(read\W*me)/
 
@@ -15,9 +19,6 @@ init:
 #install:
 #- ps: Start-FileDownload 'https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/Latest/dotnet-dev-win-x64.latest.exe'
 #- cmd: dotnet-dev-win-x64.latest.exe /quiet
-            
-environment:
-  PATH: $(PATH);$(PROGRAMFILES)\dotnet\
             
 build_script: build.cmd ci
 

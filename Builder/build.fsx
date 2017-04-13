@@ -43,6 +43,27 @@ let TestLinqProject = TestProject("RethinkDb.Driver.Linq.Tests", Folders)
 let TestGridProject = TestProject("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 
+open AssemblyInfoFile
+
+let MakeAttributes (includeSnk:bool) (testProjects : string list ) =
+    let attrs = [
+                    Attribute.Description GitHubUrl
+                ]
+
+    let mapInternalName (projectName : string) = 
+        if includeSnk then
+                let pubKey = ReadFileAsHexString Projects.SnkFilePublic
+                let visibleTo = sprintf "%s, PublicKey=%s" projectName pubKey
+                Attribute.InternalsVisibleTo(visibleTo)
+            else
+                Attribute.InternalsVisibleTo(projectName)
+
+    testProjects
+        |> List.map( mapInternalName )
+        |> List.append attrs
+
+
+
 Target "astgen" (fun _ ->
     
     trace "ReQL AST Generation Task Starting ..."
@@ -95,28 +116,33 @@ Target "msb" (fun _ ->
     
     let tag = "msb_build";
 
+    let buildProps = [ 
+                        "AssemblyOriginatorKeyFile", Projects.SnkFile
+                        "SignAssembly", BuildContext.IsTaggedBuild.ToString()
+                     ]
+
     !! DriverProject.ProjectFile
-    |> MSBuildRelease (DriverProject.OutputDirectory @@ tag) "Build"
+    |> MSBuildReleaseExt (DriverProject.OutputDirectory @@ tag) buildProps "Build"
     |> Log "AppBuild-Output: "
 
     !! LinqProject.ProjectFile
-    |> MSBuildRelease (LinqProject.OutputDirectory @@ tag) "Build"
+    |> MSBuildReleaseExt (LinqProject.OutputDirectory @@ tag) buildProps "Build"
     |> Log "AppBuild-Output: "
 
     !! GridProject.ProjectFile
-    |> MSBuildRelease (GridProject.OutputDirectory @@ tag) "Build"
+    |> MSBuildReleaseExt (GridProject.OutputDirectory @@ tag) buildProps "Build"
     |> Log "AppBuild-Output: "
 
     !! TestDriverProject.ProjectFile
-    |> MSBuildDebug "" "Build"
+    |> MSBuild "" "Build" (("Configuration", "Debug")::buildProps)
     |> Log "AppBuild-Output: "
 
     !! TestLinqProject.ProjectFile
-    |> MSBuildDebug "" "Build"
+    |> MSBuild "" "Build" (("Configuration", "Debug")::buildProps)
     |> Log "AppBuild-Output: "
 
     !! TestGridProject.ProjectFile
-    |> MSBuildDebug "" "Build"
+    |> MSBuild "" "Build" (("Configuration", "Debug")::buildProps)
     |> Log "AppBuild-Output: "
 )
 
@@ -143,10 +169,15 @@ Target "mono" (fun _ ->
 
      let tag = "mono_build/"
 
+     let buildProps = [ 
+                        "AssemblyOriginatorKeyFile", Projects.SnkFile
+                        "SignAssembly", BuildContext.IsTaggedBuild.ToString()
+                      ]
+
      //Setup
-     XBuild DriverProject.ProjectFile (DriverProject.OutputDirectory @@ tag)
-     XBuild LinqProject.ProjectFile (LinqProject.OutputDirectory @@ tag)
-     XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag)
+     XBuild DriverProject.ProjectFile (DriverProject.OutputDirectory @@ tag) buildProps
+     XBuild LinqProject.ProjectFile (LinqProject.OutputDirectory @@ tag) buildProps
+     XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag) buildProps
 )
 
 Target "restore" (fun _ -> 
@@ -179,6 +210,7 @@ Target "zip" (fun _ ->
     !!(DriverProject.OutputDirectory @@ "**") 
         ++ (LinqProject.OutputDirectory @@ "**")
         ++ (GridProject.OutputDirectory @@ "**")
+        -- (Folders.CompileOutput @@ "**" @@ "*.deps.json")
         |> Zip Folders.CompileOutput (Folders.Package @@ DriverProject.Zip)
 )
 
@@ -187,9 +219,12 @@ Target "BuildInfo" (fun _ ->
     
     trace "Writing Assembly Build Info"
 
-    MakeBuildInfo DriverProject Folders
-    MakeBuildInfo LinqProject Folders
-    MakeBuildInfo GridProject Folders
+    MakeBuildInfo DriverProject Folders (fun bip ->
+        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild [LinqProject.Name; TestDriverProject.Name; TestLinqProject.Name] } )
+    MakeBuildInfo LinqProject Folders (fun bip ->
+        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild [TestLinqProject.Name] } )
+    MakeBuildInfo GridProject Folders (fun bip ->
+        { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild [TestGridProject.Name] } )
 
     JsonPoke "version" BuildContext.FullVersion DriverProject.ProjectJson
     JsonPoke "version" BuildContext.FullVersion LinqProject.ProjectJson
@@ -219,8 +254,26 @@ Target "Clean" (fun _ ->
     JsonPoke "packOptions.releaseNotes" "" LinqProject.ProjectJson
     JsonPoke "packOptions.releaseNotes" "" GridProject.ProjectJson
 
+    JsonPoke "buildOptions.keyFile" "" DriverProject.ProjectJson
+    JsonPoke "buildOptions.keyFile" "" LinqProject.ProjectJson
+    JsonPoke "buildOptions.keyFile" "" GridProject.ProjectJson
+
     SetDependency DriverProject.Name "*" GridProject.ProjectJson
     SetDependency DriverProject.Name "*" LinqProject.ProjectJson
+
+    let defaultBuildDate = System.DateTime.Parse("1/1/2015");
+    MakeBuildInfo DriverProject Folders (fun bip ->
+        { bip with 
+            DateTime = defaultBuildDate
+            ExtraAttrs = MakeAttributes false [LinqProject.Name; TestDriverProject.Name; TestLinqProject.Name] } )
+    MakeBuildInfo LinqProject Folders (fun bip ->
+        { bip with 
+            DateTime = defaultBuildDate
+            ExtraAttrs = MakeAttributes false [TestLinqProject.Name] } )
+    MakeBuildInfo GridProject Folders (fun bip ->
+        { bip with 
+            DateTime = defaultBuildDate
+            ExtraAttrs = MakeAttributes false [TestGridProject.Name] } )
 )
 
 open Ionic.Zip
@@ -282,6 +335,17 @@ Target "citest" (fun _ ->
     UploadTestResultsXml TestResultsType.NUnit3 Folders.Test
 )
 
+Target "setup-snk"(fun _ ->
+    trace "Decrypting Strong Name Key (SNK) file."
+    let decryptSecret = environVarOrFail "SNKFILE_SECRET"
+    decryptFile Projects.SnkFile decryptSecret
+
+    JsonPoke "buildOptions.keyFile" Projects.SnkFile DriverProject.ProjectJson
+    JsonPoke "buildOptions.keyFile" Projects.SnkFile LinqProject.ProjectJson
+    JsonPoke "buildOptions.keyFile" Projects.SnkFile GridProject.ProjectJson
+//    XmlPokeInnerText BogusProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" Projects.SnkFile
+//    XmlPokeInnerText BogusProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "true"
+)
 
 
 "Clean"
@@ -291,14 +355,17 @@ Target "citest" (fun _ ->
 
 //build systems
 "BuildInfo"
+    =?> ("setup-snk", BuildContext.IsTaggedBuild)
     ==> "dnx"
     ==> "zip"
 
 "BuildInfo"
+    =?> ("setup-snk", BuildContext.IsTaggedBuild)
     ==> "msb"
     ==> "zip"
 
 "BuildInfo"
+    =?> ("setup-snk", BuildContext.IsTaggedBuild)
     ==> "mono"
     ==> "zip"
 

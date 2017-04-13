@@ -28,6 +28,7 @@
     }
   },
   "buildOptions": {
+    "keyFile": "",
     "xmlDoc": true,
     "configurations": {
       "Debug": {

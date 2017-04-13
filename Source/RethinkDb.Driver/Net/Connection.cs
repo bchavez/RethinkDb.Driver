@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Concurrent;
 using System.Net;
+using System.Net.Security;
+using System.Security.Authentication;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -25,6 +30,7 @@ namespace RethinkDb.Driver.Net
         internal SocketWrapper Socket { get; private set; }
 
         private readonly ConcurrentDictionary<long, ICursor> cursorCache = new ConcurrentDictionary<long, ICursor>();
+        private SslContext sslContext;
 
         /// <summary>
         /// Raised when the underlying network connection has thrown an exception.
@@ -47,6 +53,7 @@ namespace RethinkDb.Driver.Net
             this.Hostname = builder.hostname ?? "localhost";
             this.Port = builder.port ?? RethinkDBConstants.DefaultPort;
             connectTimeout = builder.timeout;
+            this.sslContext = builder.sslContext;
         }
 
         /// <summary>
@@ -95,7 +102,7 @@ namespace RethinkDb.Driver.Net
         public virtual async Task ReconnectAsync(bool noreplyWait = false, TimeSpan? timeout = null)
         {
             Close(noreplyWait);
-            this.Socket = new SocketWrapper(this.Hostname, this.Port, timeout ?? connectTimeout, OnSocketErrorCallback);
+            this.Socket = new SocketWrapper(this.Hostname, this.Port, timeout ?? connectTimeout, this.sslContext, OnSocketErrorCallback);
             await this.Socket.ConnectAsync(handshake).ConfigureAwait(false);
         }
 
@@ -564,6 +571,7 @@ namespace RethinkDb.Driver.Net
             internal string authKey = null;
             internal string user = null;
             internal string password = null;
+            internal SslContext sslContext = null;
 
             /// <summary>
             /// The hostname or IP address of the server.
@@ -640,6 +648,100 @@ namespace RethinkDb.Driver.Net
                 await conn.ReconnectAsync().ConfigureAwait(false);
                 return conn;
             }
+
+            /// <summary>
+            /// Enables SSL
+            /// </summary>
+            /// <param name="context">Context settings for the SSL stream.</param>
+            public virtual Builder EnableSsl(SslContext context, string licenseTo, string licenseKey)
+            {
+                this.sslContext = context;
+                
+                if( !LicenseVerifier.VerifyLicense(licenseTo, licenseKey) )
+                {
+                    throw new ReqlDriverError("The SSL/TLS usage license is invalid. Please check your license that you copied all the characters in your license. If you still have trouble, please contact support@bitarmory.com.");
+                }
+                return this;
+            }
         }
+    }
+
+    internal sealed class LicenseVerifier
+    {
+        public static bool VerifyLicense(string licenseTo, string licenseKey)
+        {
+            AssertKeyIsNotBanned(licenseKey);
+
+            const string modulusString =
+                "tccosXHxEfxzsO1NgsAbGT0X+WuQMUYcj7r2UJCHDqqq3TbR7UoAgzjm3MV1k/eJxRnURypw2wj98eafyajeprk3lK6BnWa5tG8S7p3QU5kkUo7TnmTj8rRkTk9RwArIGGjKfCVZToE06UQudsJmw1UK3mku1qF0/hD909cSiCM=";
+            const string exponentString = "AQAB";
+
+            var data = Encoding.UTF8.GetBytes(licenseTo);
+
+            var rsaParameters = new RSAParameters
+                {
+                    Modulus = Convert.FromBase64String(modulusString),
+                    Exponent = Convert.FromBase64String(exponentString)
+                };
+#if STANDARD
+            using( var rsa = System.Security.Cryptography.RSA.Create() )
+#else
+            using( var rsa = new System.Security.Cryptography.RSACryptoServiceProvider() )
+#endif
+            {
+                var licenseData = Convert.FromBase64String(licenseKey);
+                rsa.ImportParameters(rsaParameters);
+
+                bool verified = false;
+
+#if STANDARD
+                verified = rsa.VerifyData(data, licenseData, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+#else
+                verified = rsa.VerifyData(data, CryptoConfig.MapNameToOID("SHA256"), licenseData);
+#endif
+                return verified;
+            }
+        }
+
+        private static void AssertKeyIsNotBanned(string licenseKey)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Settings object for SSL/TLS connections with RethinkDB.
+    /// </summary>
+    public class SslContext
+    {
+        /// <summary>
+        /// Client certificates.
+        /// </summary>
+        public X509CertificateCollection ClientCertificateCollection { get; set; }
+
+        /// <summary>
+        /// Server-side certificate validation callback.
+        /// </summary>
+        public RemoteCertificateValidationCallback ServerCertificateValidationCallback { get; set; }
+        /// <summary>
+        /// Client-side certificate validation callback
+        /// </summary>
+        public LocalCertificateSelectionCallback LocalCertificateSelectionCallback { get; set; }
+
+        /// <summary>
+        /// The enabled security protocols to use over the socket. Default: TLS, TLS 1.1, TLS 1.2.
+        /// SSLv2 and SSLv3 are considered insecure.
+        /// </summary>
+        public SslProtocols EnabledProtocols { get; set; } = 
+            SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
+
+        /// <summary>
+        /// By default, the connection's hostname is used. This setting can override host verification.
+        /// </summary>
+        public string TargetHostOverride { get; set; }
+
+        /// <summary>
+        /// Check for certificate revocation.
+        /// </summary>
+        public bool CheckCertificateRevocation { get; set; } = false;
     }
 }

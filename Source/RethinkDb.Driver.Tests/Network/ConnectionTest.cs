@@ -1,9 +1,13 @@
 using System;
+using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Net.Clustering;
 using RethinkDb.Driver.Tests.Utils;
 
@@ -116,5 +120,36 @@ namespace RethinkDb.Driver.Tests.Network
 
         }
 
+        [Test]
+        [Explicit]
+        public void can_connect_over_ssl()
+        {
+            var auth = "";
+            var port = 3432;
+
+            var conn = R.Connection()
+                .AuthKey(auth)
+                .EnableSsl(
+                    new SslContext
+                        {
+                            ServerCertificateValidationCallback = ValidationCallback,
+                            EnabledProtocols = SslProtocols.Tls12
+                        },
+                    licenseTo: "bchavez@gmail.com",
+                    licenseKey: "stuff"
+                )
+                .Connect();
+
+            var val = R.Expr(1).Add(1).RunAtom<int>(conn);
+            val.Should().Be(2);
+        }
+        private X509Certificate2 x509cert;
+        private bool ValidationCallback(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            //var truth = chain.ChainElements[0].Certificate.Thumbprint == x509cert.Thumbprint;
+
+         //   return truth;
+            return true;
+        }
     }
 }

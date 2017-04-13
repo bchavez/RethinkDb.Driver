@@ -19,13 +19,14 @@
     "iconUrl": "https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png",
     "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
     "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
-    "requireLicenseAcceptance": false,
+    "requireLicenseAcceptance": true,
     "repository": {
       "type": "git",
       "url": "https://github.com/bchavez/RethinkDb.Driver"
     }
   },
   "buildOptions": {
+    "keyFile": "",
     "xmlDoc": true,
     "configurations": {
       "Debug": {
@@ -57,7 +58,9 @@
         "System.Security.Cryptography.Algorithms": "4.2.0",
         "System.Security.Cryptography.Primitives": "4.0.0",
         "System.Threading.Thread": "4.0.0",
-        "System.Net.NameResolution": "4.0.0"
+        "System.Net.NameResolution": "4.0.0",
+        "System.Net.Security": "4.0.0",
+        "System.Net.Primitives": "4.0.11"
       },
       "imports": [
         "portable-net451+win8",

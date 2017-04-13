@@ -53,7 +53,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyAttributes.cs" />
     <Compile Include="Ast\ExtensionHelper.cs" />
     <Compile Include="Ast\ReqlRaw.cs" />
     <Compile Include="Ast\TopLevel.cs" />

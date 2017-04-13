@@ -20,9 +20,6 @@ init:
 #- ps: Start-FileDownload 'https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/Latest/dotnet-dev-win-x64.latest.exe'
 #- cmd: dotnet-dev-win-x64.latest.exe /quiet
             
-environment:
-  PATH: $(PATH);$(PROGRAMFILES)\dotnet\
-            
 build_script: build.cmd ci
 
 #after_build:

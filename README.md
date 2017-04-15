@@ -75,7 +75,7 @@ Documentation
   * [Single Connection](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#single-connection-no-pooling)
   * [Round Robin Pooling](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#round-robin-strategy)
   * [Epsilon Greedy Pooling](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#epsilon-greedy-strategy)
-  * [Using SSL TLS Encryption](https://github.com/bchavez/RethinkDb.Driver/wiki/Using-SSL-TLS-Encryption-(and-connecting-to-Compose.IO))
+  * [Using SSL / TLS Encryption](https://github.com/bchavez/RethinkDb.Driver/wiki/Using-SSL-TLS-Encryption-(and-connecting-to-Compose.IO))
       * [Connecting to Compose.IO](https://github.com/bchavez/RethinkDb.Driver/wiki/Using-SSL-TLS-Encryption-(and-connecting-to-Compose.IO)#connecting-to-composeio)
 * [Extra C# Features](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features)
   * [Optional Arguments](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#optional-arguments)

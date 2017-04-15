@@ -16,16 +16,16 @@ This driver is based on the *official* [Java Driver](https://github.com/rethinkd
 * [Awesome documentation](https://github.com/bchavez/RethinkDb.Driver/wiki).
 * [ReGrid Support](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage) - Distributed Large Binary Storage
 
-### Open-Source and Commercial Licensing
-This open-source driver is dual-licensed.
+## Open-Source and Commercial Licensing
+This open-source driver is dual-licensed. Please read below about SSL/TLS restrictions.
 
 ###### Commercial License
-A commercial license is required if any part of this driver is used to communicate with a **RethinkDB (server or proxy)** using SSL/TLS. A commercial license is also required if any part of this driver is used to interact with [**Compose.IO**](https://www.compose.com). Commercial licenses are sold by [**Bit Armory Inc**](https://www.bitarmory.com/) and are available for [**purchase here**](https://www.bitarmory.com/payments/rethinkdb). More information about commercial licensing can be [found here](https://github.com/bchavez/RethinkDb.Driver/wiki/Using-SSL-TLS-Encryption-(and-connecting-to-Compose.IO)).
+A commercial license is required if any part of this driver is used to communicate with a **RethinkDB (server or proxy)** using SSL/TLS encryption. A commercial license is also required if any part of this driver is used to interact with [**Compose.IO**](https://www.compose.com). Commercial licenses are sold by [**Bit Armory Inc**](https://www.bitarmory.com/) and are available for [**purchase here**](https://www.bitarmory.com/payments/rethinkdb). More information about commercial licensing can be [found here](https://github.com/bchavez/RethinkDb.Driver/wiki/Using-SSL-TLS-Encryption-(and-connecting-to-Compose.IO)).
 
 ###### Open-Source License
-As long as SSL/TLS is not used when communicating with a **RethinkDB (server or proxy)**, the driver is free to use for **commercial** and **non-commercial** applications and is covered under a ***modified Apache License 2.0***.
+As long as SSL/TLS is not used when communicating with a **RethinkDB (server or proxy)**, the driver is free to use for **commercial** and **non-commercial** applications and is covered under a [*modified Apache License 2.0*](https://github.com/bchavez/RethinkDb.Driver/blob/master/LICENSE).
 
-### Getting Help
+## Getting Help
 ###### Commercial Support
 Independent commercial support and consulting are available for this ***community driver***. To ensure best practices in .NET, proper driver usage, training, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez), [email](https://github.com/bchavez)) for more information.
 
@@ -33,7 +33,7 @@ Independent commercial support and consulting are available for this ***communit
 [**Slack** (http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many **RethinkDB** users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
 
 
-### Download & Install
+## Download & Install
 **NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/RethinkDb.Driver/)**
 
 ```

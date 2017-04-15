@@ -716,7 +716,7 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Client certificates.
         /// </summary>
-        public X509CertificateCollection ClientCertificateCollection { get; set; }
+        public X509CertificateCollection ClientCertificateCollection { get; set; } = new X509Certificate2Collection();
 
         /// <summary>
         /// Server-side certificate validation callback.

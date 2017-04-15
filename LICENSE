@@ -7,7 +7,10 @@ or to any other SSL/TLS endpoint without a commercial license.
 
 To remove this limitation and permit usage over SSL/TLS, a commercial
 license must be purchased. The commercial license permitting use over
-SSL/TLS and Compose.IO is available from Bit Armory Inc.
+SSL/TLS and Compose.IO is available from Bit Armory Inc and can
+be purchased here:
+
+       https://www.bitarmory.com/payments/rethinkdb
 
 Copyright 2010-2012 RethinkDB
 

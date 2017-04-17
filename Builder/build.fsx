@@ -188,12 +188,67 @@ Target "restore" (fun _ ->
         )
  )
 
+open Ionic.Zip
+open System.Xml
+
 Target "nuget" (fun _ ->
     trace "NuGet Task"
-    
+
     DotnetPack DriverProject Folders.Package
     DotnetPack LinqProject Folders.Package
     DotnetPack GridProject Folders.Package
+
+    traceHeader "Injecting Version Ranges"
+
+    let files = [
+                    LinqProject.NugetPkg, LinqProject.NugetSpec
+                    LinqProject.NugetPkgSymbols, LinqProject.NugetSpec
+
+                    GridProject.NugetPkg, GridProject.NugetSpec
+                    GridProject.NugetPkgSymbols, GridProject.NugetSpec
+                ]
+
+    let exactNugetVersion = [
+                                 "RethinkDb.Driver"
+                            ]
+  
+    let extractNugetPackage (pkg : string) (extractPath : string) = 
+        use zip = new ZipFile(pkg)
+        zip.ExtractAll( extractPath )
+  
+    let repackNugetPackage (folderPath : string) (pkg : string) =
+        use zip = new ZipFile()
+        zip.AddDirectory(folderPath) |> ignore
+        zip.Save(pkg)
+  
+    for (pkg, spec) in files do 
+        tracefn "FILE: %s" pkg
+  
+        let extractPath = Folders.Package @@ fileNameWithoutExt pkg
+  
+        extractNugetPackage pkg extractPath
+        DeleteFile pkg
+  
+        let nuspecFile = extractPath @@ spec
+  
+        let xmlns = [("def", "http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd")]
+  
+        let doc = new XmlDocument()
+        doc.Load nuspecFile
+  
+        for exact in exactNugetVersion do
+            let target = sprintf "//def:dependency[@id='%s']" exact
+            let nodes = XPathSelectAllNSDoc doc xmlns target
+            for node in nodes do
+                let version = getAttribute "version" node
+                node.Attributes.["version"].Value <- sprintf "[%s]" version
+        
+        doc.Save nuspecFile
+    
+        repackNugetPackage extractPath pkg
+        DeleteDir extractPath
+    
+    
 )
 
 Target "push" (fun _ ->
@@ -226,18 +281,24 @@ Target "BuildInfo" (fun _ ->
     MakeBuildInfo GridProject Folders (fun bip ->
         { bip with ExtraAttrs = MakeAttributes BuildContext.IsTaggedBuild [TestGridProject.Name] } )
 
-    JsonPoke "version" BuildContext.FullVersion DriverProject.ProjectJson
-    JsonPoke "version" BuildContext.FullVersion LinqProject.ProjectJson
-    JsonPoke "version" BuildContext.FullVersion GridProject.ProjectJson
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/Version" BuildContext.FullVersion
+    //JsonPoke "version" BuildContext.FullVersion DriverProject.ProjectJson
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/Version" BuildContext.FullVersion
+    //JsonPoke "version" BuildContext.FullVersion LinqProject.ProjectJson
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/Version" BuildContext.FullVersion
+    //JsonPoke "version" BuildContext.FullVersion GridProject.ProjectJson
     
     let releaseNotes = History.NugetText Files.History GitHubUrl
-    JsonPoke "packOptions.releaseNotes" releaseNotes DriverProject.ProjectJson
-    JsonPoke "packOptions.releaseNotes" releaseNotes LinqProject.ProjectJson
-    JsonPoke "packOptions.releaseNotes" releaseNotes GridProject.ProjectJson
+    //JsonPoke "packOptions.releaseNotes" releaseNotes DriverProject.ProjectJson
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/PackageReleaseNotes" releaseNotes
+    //JsonPoke "packOptions.releaseNotes" releaseNotes LinqProject.ProjectJson
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/PackageReleaseNotes" releaseNotes
+    //JsonPoke "packOptions.releaseNotes" releaseNotes GridProject.ProjectJson
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/PackageReleaseNotes" releaseNotes
 
-    let version = sprintf "[%s]" BuildContext.FullVersion
-    SetDependency DriverProject.Name version GridProject.ProjectJson
-    SetDependency DriverProject.Name version LinqProject.ProjectJson
+    //let version = sprintf "[%s]" BuildContext.FullVersion
+    //SetDependency DriverProject.Name version GridProject.ProjectJson
+    //SetDependency DriverProject.Name version LinqProject.ProjectJson
 )
 
 
@@ -245,21 +306,35 @@ Target "Clean" (fun _ ->
     DeleteFile Files.TestResultFile
     CleanDirs [Folders.CompileOutput; Folders.Package]
 
-    JsonPoke "version" "0.0.0-localbuild" DriverProject.ProjectJson
-    JsonPoke "version" "0.0.0-localbuild" LinqProject.ProjectJson
-    JsonPoke "version" "0.0.0-localbuild" GridProject.ProjectJson
+    //JsonPoke "version" "0.0.0-localbuild" DriverProject.ProjectJson
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/Version" "0.0.0-localbuild"
+    //JsonPoke "version" "0.0.0-localbuild" LinqProject.ProjectJson
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/Version" "0.0.0-localbuild"
+    //JsonPoke "version" "0.0.0-localbuild" GridProject.ProjectJson
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/Version" "0.0.0-localbuild"
     
     //reset project deps.
-    JsonPoke "packOptions.releaseNotes" "" DriverProject.ProjectJson
-    JsonPoke "packOptions.releaseNotes" "" LinqProject.ProjectJson
-    JsonPoke "packOptions.releaseNotes" "" GridProject.ProjectJson
+    //JsonPoke "packOptions.releaseNotes" "" DriverProject.ProjectJson
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/PackageReleaseNotes" ""
+    //JsonPoke "packOptions.releaseNotes" "" LinqProject.ProjectJson
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/PackageReleaseNotes" ""
+    //JsonPoke "packOptions.releaseNotes" "" GridProject.ProjectJson
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/PackageReleaseNotes" ""
 
-    JsonPoke "buildOptions.keyFile" "" DriverProject.ProjectJson
-    JsonPoke "buildOptions.keyFile" "" LinqProject.ProjectJson
-    JsonPoke "buildOptions.keyFile" "" GridProject.ProjectJson
+    //JsonPoke "buildOptions.keyFile" "" DriverProject.ProjectJson
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" ""
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "false"
 
-    SetDependency DriverProject.Name "*" GridProject.ProjectJson
-    SetDependency DriverProject.Name "*" LinqProject.ProjectJson
+    //JsonPoke "buildOptions.keyFile" "" LinqProject.ProjectJson
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" ""
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "false"
+
+    //JsonPoke "buildOptions.keyFile" "" GridProject.ProjectJson
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" ""
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "false"
+
+    //SetDependency DriverProject.Name "*" GridProject.ProjectJson
+    //SetDependency DriverProject.Name "*" LinqProject.ProjectJson
 
     let defaultBuildDate = System.DateTime.Parse("1/1/2015");
     MakeBuildInfo DriverProject Folders (fun bip ->
@@ -340,11 +415,17 @@ Target "setup-snk"(fun _ ->
     let decryptSecret = environVarOrFail "SNKFILE_SECRET"
     decryptFile Projects.SnkFile decryptSecret
 
-    JsonPoke "buildOptions.keyFile" Projects.SnkFile DriverProject.ProjectJson
-    JsonPoke "buildOptions.keyFile" Projects.SnkFile LinqProject.ProjectJson
-    JsonPoke "buildOptions.keyFile" Projects.SnkFile GridProject.ProjectJson
-//    XmlPokeInnerText BogusProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" Projects.SnkFile
-//    XmlPokeInnerText BogusProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "true"
+    //JsonPoke "buildOptions.keyFile" Projects.SnkFile DriverProject.ProjectJson
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" Projects.SnkFile
+    XmlPokeInnerText DriverProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "true"
+
+    //JsonPoke "buildOptions.keyFile" Projects.SnkFile LinqProject.ProjectJson
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" Projects.SnkFile
+    XmlPokeInnerText LinqProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "true"
+
+    //JsonPoke "buildOptions.keyFile" Projects.SnkFile GridProject.ProjectJson
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/AssemblyOriginatorKeyFile" Projects.SnkFile
+    XmlPokeInnerText GridProject.ProjectFile "/Project/PropertyGroup/SignAssembly" "true"
 )
 
 
@@ -366,7 +447,7 @@ Target "setup-snk"(fun _ ->
 
 "BuildInfo"
     =?> ("setup-snk", BuildContext.IsTaggedBuild)
-    ==> "mono"
+    //==> "mono" - AppVeyor doesn't have mono on VS 2017 image
     ==> "zip"
 
 "dnx"

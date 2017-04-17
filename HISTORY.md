@@ -1,3 +1,7 @@
+## v2.3.16-beta-2
+* Move to Visual Studio 2017 RTM Build Tools
+* .NET Core Tooling and Framework Reference Update
+
 ## v2.3.16-beta-1
 * Initial support for SSL/TLS connections to RethinkDB Server (and consequently compose.io).
 * SSL/TLS APIs require a commercial license and can be purchased here: https://www.bitarmory.com/payments/rethinkdb

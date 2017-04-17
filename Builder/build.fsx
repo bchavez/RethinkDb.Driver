@@ -447,7 +447,7 @@ Target "setup-snk"(fun _ ->
 
 "BuildInfo"
     =?> ("setup-snk", BuildContext.IsTaggedBuild)
-    ==> "mono"
+    //==> "mono" - AppVeyor doesn't have mono on VS 2017 image
     ==> "zip"
 
 "dnx"

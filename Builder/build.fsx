@@ -188,12 +188,67 @@ Target "restore" (fun _ ->
         )
  )
 
+open Ionic.Zip
+open System.Xml
+
 Target "nuget" (fun _ ->
     trace "NuGet Task"
-    
+
     DotnetPack DriverProject Folders.Package
     DotnetPack LinqProject Folders.Package
     DotnetPack GridProject Folders.Package
+
+    traceHeader "Injecting Version Ranges"
+
+    let files = [
+                    LinqProject.NugetPkg, LinqProject.NugetSpec
+                    LinqProject.NugetPkgSymbols, LinqProject.NugetSpec
+
+                    GridProject.NugetPkg, GridProject.NugetSpec
+                    GridProject.NugetPkgSymbols, GridProject.NugetSpec
+                ]
+
+    let exactNugetVersion = [
+                                 "RethinkDb.Driver"
+                            ]
+  
+    let extractNugetPackage (pkg : string) (extractPath : string) = 
+        use zip = new ZipFile(pkg)
+        zip.ExtractAll( extractPath )
+  
+    let repackNugetPackage (folderPath : string) (pkg : string) =
+        use zip = new ZipFile()
+        zip.AddDirectory(folderPath) |> ignore
+        zip.Save(pkg)
+  
+    for (pkg, spec) in files do 
+        tracefn "FILE: %s" pkg
+  
+        let extractPath = Folders.Package @@ fileNameWithoutExt pkg
+  
+        extractNugetPackage pkg extractPath
+        DeleteFile pkg
+  
+        let nuspecFile = extractPath @@ spec
+  
+        let xmlns = [("def", "http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd")]
+  
+        let doc = new XmlDocument()
+        doc.Load nuspecFile
+  
+        for exact in exactNugetVersion do
+            let target = sprintf "//def:dependency[@id='%s']" exact
+            let nodes = XPathSelectAllNSDoc doc xmlns target
+            for node in nodes do
+                let version = getAttribute "version" node
+                node.Attributes.["version"].Value <- sprintf "[%s]" version
+        
+        doc.Save nuspecFile
+    
+        repackNugetPackage extractPath pkg
+        DeleteDir extractPath
+    
+    
 )
 
 Target "push" (fun _ ->

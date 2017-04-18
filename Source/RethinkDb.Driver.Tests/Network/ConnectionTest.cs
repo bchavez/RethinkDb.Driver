@@ -122,13 +122,30 @@ namespace RethinkDb.Driver.Tests.Network
 
         [Test]
         [Explicit]
+        public void can_conenct_to_cluster_via_tls()
+        {
+            var conn = R.ConnectionPool()
+                .Seed("192.168.0.140")
+                .PoolingStrategy(new RoundRobinHostPool())
+                .EnableSsl(new SslContext
+                        {
+                            ServerCertificateValidationCallback = ValidationCallback,
+                            EnabledProtocols = SslProtocols.Tls12
+                        },
+                    licenseTo: "Brian Chavez",
+                    licenseKey: "stuff")
+                .Connect();
+
+            var val = R.Expr(1).Add(1).RunAtom<int>(conn);
+            val.Should().Be(2);
+        }
+
+        [Test]
+        [Explicit]
         public void can_connect_over_ssl()
         {
-            var auth = "";
-            var port = 3432;
-
             var conn = R.Connection()
-                .AuthKey(auth)
+                .Hostname("192.168.0.140")
                 .EnableSsl(
                     new SslContext
                         {

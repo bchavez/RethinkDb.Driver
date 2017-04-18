@@ -22,6 +22,7 @@ namespace RethinkDb.Driver.Net.Clustering
         private bool discover;
         private IPoolingStrategy poolingStrategy;
         private TimeSpan? initialTimeout;
+        private SslContext sslContext;
 
         /// <summary>
         /// The default database used by queries.
@@ -86,6 +87,7 @@ namespace RethinkDb.Driver.Net.Clustering
             discover = builder.discover;
             poolingStrategy = builder.hostpool;
             initialTimeout = builder.initialTimeout;
+            sslContext = builder.sslContext;
         }
 
 
@@ -358,7 +360,8 @@ namespace RethinkDb.Driver.Net.Clustering
                     password = password,
                     dbname = dbname,
                     hostname = hostname,
-                    port = port
+                    port = port,
+                    sslContext = sslContext,
                 });
 
             connNew.ConnectionError += OnConnectionError;
@@ -380,6 +383,14 @@ namespace RethinkDb.Driver.Net.Clustering
 
 
         /// <summary>
+        /// Disposes / shuts down the connection pool.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Shutdown();
+        }
+
+        /// <summary>
         /// The connection pool builder.
         /// </summary>
         public class Builder : IConnectionBuilder<Builder>
@@ -392,6 +403,7 @@ namespace RethinkDb.Driver.Net.Clustering
             internal string password;
             internal IPoolingStrategy hostpool;
             internal TimeSpan? initialTimeout;
+            internal SslContext sslContext;
 
             /// <summary>
             /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
@@ -535,14 +547,24 @@ namespace RethinkDb.Driver.Net.Clustering
                 conn.StartPool();
                 return conn.poolReady.Task;
             }
-        }
 
-        /// <summary>
-        /// Disposes / shuts down the connection pool.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Shutdown();
+
+            /// <summary>
+            /// Enables SSL over the driver port
+            /// </summary>
+            /// <param name="context">Context settings for the SSL stream.</param>
+            public virtual Builder EnableSsl(SslContext context, string licenseTo, string licenseKey)
+            {
+                this.sslContext = context;
+
+#if !DEBUG
+                if( !LicenseVerifier.VerifyLicense(licenseTo, licenseKey) )
+                {
+                    throw new ReqlDriverError("The SSL/TLS usage license is invalid. Please check your license that you copied all the characters in your license. If you still have trouble, please contact support@bitarmory.com.");
+                }
+#endif
+                return this;
+            }
         }
     }
 }

@@ -50,15 +50,13 @@ namespace RethinkDb.Driver.Ast {
     
     public static Func FromLambda(Delegate function){
     
-        var func0 = function as ReqlFunction0;
-        if( func0 != null )
+        if( function is ReqlFunction0 func0 )
         {
             return new Func(Arguments.Make(new List<object>(),
                 Util.ToReqlAst( func0() )));
         }
             //Function 1
-            var func1 = function as ReqlFunction1;
-            if( func1 != null){
+            if( function is ReqlFunction1 func1 ){
                 int var1 = NextVarId();
                 var varIds = new List<int>{ 
                     var1,
@@ -72,8 +70,7 @@ namespace RethinkDb.Driver.Ast {
                 ));
             }
             //Function 2
-            var func2 = function as ReqlFunction2;
-            if( func2 != null){
+            if( function is ReqlFunction2 func2 ){
                 int var1 = NextVarId();
                 int var2 = NextVarId();
                 var varIds = new List<int>{ 
@@ -90,8 +87,7 @@ namespace RethinkDb.Driver.Ast {
                 ));
             }
             //Function 3
-            var func3 = function as ReqlFunction3;
-            if( func3 != null){
+            if( function is ReqlFunction3 func3 ){
                 int var1 = NextVarId();
                 int var2 = NextVarId();
                 int var3 = NextVarId();
@@ -111,8 +107,7 @@ namespace RethinkDb.Driver.Ast {
                 ));
             }
             //Function 4
-            var func4 = function as ReqlFunction4;
-            if( func4 != null){
+            if( function is ReqlFunction4 func4 ){
                 int var1 = NextVarId();
                 int var2 = NextVarId();
                 int var3 = NextVarId();
@@ -140,15 +135,13 @@ namespace RethinkDb.Driver.Ast {
     
     public static Func Serialize(Delegate function, List<Guid> context){
     
-        var func0 = function as ReqlFunction0;
-        if( func0 != null )
+        if( function is ReqlFunction0 func0 )
         {
             return new Func(Arguments.Make(new List<object>(),
                 Util.ToReqlAst( func0() )));
         }
             //Function 1
-            var func1 = function as ReqlFunction1;
-            if( func1 != null){
+            if( function is ReqlFunction1 func1 ){
                 Guid var1 = NextVarGuid();
                 var varIds = new List<Guid>{ 
                     var1,
@@ -163,8 +156,7 @@ namespace RethinkDb.Driver.Ast {
                 ));
             }
             //Function 2
-            var func2 = function as ReqlFunction2;
-            if( func2 != null){
+            if( function is ReqlFunction2 func2 ){
                 Guid var1 = NextVarGuid();
                 Guid var2 = NextVarGuid();
                 var varIds = new List<Guid>{ 
@@ -182,8 +174,7 @@ namespace RethinkDb.Driver.Ast {
                 ));
             }
             //Function 3
-            var func3 = function as ReqlFunction3;
-            if( func3 != null){
+            if( function is ReqlFunction3 func3 ){
                 Guid var1 = NextVarGuid();
                 Guid var2 = NextVarGuid();
                 Guid var3 = NextVarGuid();
@@ -204,8 +195,7 @@ namespace RethinkDb.Driver.Ast {
                 ));
             }
             //Function 4
-            var func4 = function as ReqlFunction4;
-            if( func4 != null){
+            if( function is ReqlFunction4 func4 ){
                 Guid var1 = NextVarGuid();
                 Guid var2 = NextVarGuid();
                 Guid var3 = NextVarGuid();

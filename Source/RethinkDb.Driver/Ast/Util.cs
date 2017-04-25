@@ -48,14 +48,12 @@ namespace RethinkDb.Driver.Ast
                 return ast;
             }
 
-            var token = val as JToken;
-            if( token != null )
+            if( val is JToken token )
             {
                 return new Poco(token);
             }
 
-            var lst = val as IList;
-            if( lst != null )
+            if( val is IList lst )
             {
                 Arguments innerValues = new Arguments();
                 foreach( object innerValue in lst )
@@ -65,8 +63,7 @@ namespace RethinkDb.Driver.Ast
                 return new MakeArray(innerValues, null);
             }
 
-            var dict = val as IDictionary;
-            if( dict != null )
+            if( val is IDictionary dict )
             {
                 var obj = new Dictionary<string, ReqlAst>();
                 foreach( var keyObj in dict.Keys )
@@ -82,19 +79,18 @@ namespace RethinkDb.Driver.Ast
                 return MakeObj.fromMap(obj);
             }
 
-            var del = val as Delegate;
-            if( del != null )
+            if( val is Delegate del )
             {
                 return Func.FromLambda(del);
             }
 
             var dt = val as DateTime?;
-            if (dt != null)
+            if( dt != null )
             {
                 return new Poco(dt);
             }
             var dto = val as DateTimeOffset?;
-            if (dto != null)
+            if( dto != null )
             {
                 return new Poco(dto);
             }
@@ -116,8 +112,7 @@ namespace RethinkDb.Driver.Ast
                 return new Datum(@bool);
             }
 
-            var str = val as string;
-            if( str != null )
+            if( val is string str )
             {
                 return new Datum(str);
             }

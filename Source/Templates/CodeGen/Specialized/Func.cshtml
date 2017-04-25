@@ -42,8 +42,7 @@
     
     public static Func FromLambda(Delegate function){
     
-        var func0 = function as ReqlFunction0;
-        if( func0 != null )
+        if( function is ReqlFunction0 func0 )
         {
             return new Func(Arguments.Make(new List<object>(),
                 Util.ToReqlAst( func0() )));
@@ -51,8 +50,7 @@
         @foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
         {
             @://Function @n
-            @:var @("func"+n) = function as @("ReqlFunction"+n);
-            @:if( @("func"+n) != null){
+            @:if( function is @("ReqlFunction" + n) @("func"+n) ){
                 for( int v = 1; v <= n; v++ )
                 {
                 @:int @("var" + v) = NextVarId();
@@ -83,8 +81,7 @@
     
     public static Func Serialize(Delegate function, List<Guid> context){
     
-        var func0 = function as ReqlFunction0;
-        if( func0 != null )
+        if( function is ReqlFunction0 func0 )
         {
             return new Func(Arguments.Make(new List<object>(),
                 Util.ToReqlAst( func0() )));
@@ -92,8 +89,7 @@
         @foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
         {
             @://Function @n
-            @:var @("func"+n) = function as @("ReqlFunction"+n);
-            @:if( @("func"+n) != null){
+            @:if( function is @("ReqlFunction" + n) @("func" + n) ){
                 for( int v = 1; v <= n; v++ )
                 {
                 @:Guid @("var" + v) = NextVarGuid();

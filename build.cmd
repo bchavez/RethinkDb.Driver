@@ -2,11 +2,6 @@
 cls
 REM "NuGet.exe" "Install" "FAKE" "-OutputDirectory" "Source\packages" "-ExcludeVersion"
 
-.paket\paket.bootstrapper.exe
-if errorlevel 1 (
-  exit /b %errorlevel%
-)
-
 pushd Source
 ..\.paket\paket.exe install
 if errorlevel 1 (

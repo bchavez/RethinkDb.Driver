@@ -1,3 +1,6 @@
+## v2.3.18
+* Use some C# 7 features in AST composition for performance.
+
 ## v2.3.17
 * Move to Visual Studio 2017 RTM Build Tools
 * .NET Core Tooling and Framework Reference Update

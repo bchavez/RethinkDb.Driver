@@ -45,10 +45,14 @@ let TestGridProject = TestProject("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 open AssemblyInfoFile
 
-let MakeAttributes (includeSnk:bool) (testProjects : string list ) =
+let MakeAttributes (includeSnk:bool) (testProjects : string list ) =   
     let attrs = [
-                    Attribute.Description GitHubUrl
+                   Attribute.Description GitHubUrl
                 ]
+                @ if not includeSnk then
+                      [ Attribute.InternalsVisibleTo("Benchmark") ]
+                  else
+                      []
 
     let mapInternalName (projectName : string) = 
         if includeSnk then

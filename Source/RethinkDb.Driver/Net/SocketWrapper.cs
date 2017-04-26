@@ -116,7 +116,7 @@ namespace RethinkDb.Driver.Net
             Exception lastExc = null;
             foreach( var address in addresses )
             {
-                var s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+                var s = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp)
                     {
                         NoDelay = true
                     };

@@ -1,5 +1,6 @@
-## v2.3.18
+## v2.3.18-beta-1
 * Use some C# 7 features in AST composition for performance.
+* Issue 112: Allow driver to connect over IPv6.
 
 ## v2.3.17
 * Move to Visual Studio 2017 RTM Build Tools

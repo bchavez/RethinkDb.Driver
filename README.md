@@ -27,7 +27,7 @@ As long as SSL/TLS is not used when communicating with a **RethinkDB (server or 
 
 ## Getting Help
 ###### Commercial Support
-Independent commercial support and consulting are available for this ***community driver***. To ensure best practices in .NET, proper driver usage, training, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez), [email](https://github.com/bchavez)) for more information.
+Independent commercial support and consulting are available for this driver. To ensure best practices in .NET, proper driver usage, training, and critical bug fixes for the **C#** driver contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez), [email](https://github.com/bchavez)) for more information.
 
 ###### Community Support
 [**Slack** (http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many **RethinkDB** users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.

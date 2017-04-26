@@ -1,6 +1,6 @@
 ## v2.3.18-beta-1
-* Use some C# 7 features in AST composition for performance.
-* Issue 112: Allow driver to connect over IPv6.
+* Use some C# 7 features in AST composition for faster performance.
+* Issue 112: Fixed `NotSupportedException` when connecting to an IPv6 address.
 
 ## v2.3.17
 * Move to Visual Studio 2017 RTM Build Tools

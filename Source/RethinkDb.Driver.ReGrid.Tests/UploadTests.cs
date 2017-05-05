@@ -159,6 +159,37 @@ namespace RethinkDb.Driver.ReGrid.Tests
             TestFiles.DifferentPathsAndRevisions(this.bucket);
         }
 
+
+        
+        [Test]
+        public void upload_file_with_client_generated_fileid()
+        {
+            var guid = new Guid("BC2B30C2-6780-4ABC-A033-8F2396BA0846");
+            var forcedGuid = this.bucket.Upload(testfile, TestBytes.OneHalfChunk, new UploadOptions
+                {
+                    ForceFileId = guid
+                });
+
+            forcedGuid.Should().Be(guid);
+        }
+
+        [Test]
+        public void uploading_to_the_same_file_id_twice_should_fail()
+        {
+            var guid = new Guid("BC2B30C2-6780-4ABC-A033-8F2396BA0846");
+            var opts = new UploadOptions
+                {
+                    ForceFileId = guid
+                };
+            var forcedGuid = this.bucket.Upload(testfile, TestBytes.OneHalfChunk, opts);
+
+            forcedGuid.Should().Be(guid);
+
+            Action act = () => this.bucket.Upload(testfile, TestBytes.OneHalfChunk, opts);
+
+            act.ShouldThrow<ReqlAssertFailure>();
+        }
+
         //DEBUG INDEXES:
         //r.db("query").table("fs_files").map(function(x) { return x('filename').split("/").slice(0, -1); })
 

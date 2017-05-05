@@ -1,3 +1,6 @@
+## v2.3.19
+* Issue 113: Allow client-side generation of ReGrid file ids.
+
 ## v2.3.18-beta-1
 * Use some C# 7 features in AST composition for faster performance.
 * Issue 112: Fixed `NotSupportedException` when connecting to an IPv6 address.

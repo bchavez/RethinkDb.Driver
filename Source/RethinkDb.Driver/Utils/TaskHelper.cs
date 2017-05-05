@@ -46,9 +46,9 @@ namespace RethinkDb.Driver.Utils
             CompletedResponse = Task.FromResult<Response>(null);
         }
 
-        public static Task CompletedTask { get; private set; }
-        public static Task<bool> CompletedTaskTrue { get; private set; }
-        public static Task<bool> CompletedTaskFalse { get; private set; }
-        public static Task<Response> CompletedResponse { get; private set; }
+        public static Task CompletedTask { get; }
+        public static Task<bool> CompletedTaskTrue { get; }
+        public static Task<bool> CompletedTaskFalse { get; }
+        public static Task<Response> CompletedResponse { get; }
     }
 }

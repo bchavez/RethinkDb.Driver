@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Net;
 
@@ -46,6 +47,14 @@ namespace RethinkDb.Driver.ReGrid
         /// See <see cref="SetMetadata"/> pseudo-type conversion is necessary.
         /// </summary>
         public JObject Metadata { get; set; }
+
+        /// <summary>
+        /// Set a predetermined (client-side generated) identifier
+        /// that can used to uniquely reference the file in ReGrid.
+        /// An exception will be thrown if a duplicate identifier
+        /// is encountered when creating the upload session.
+        /// </summary>
+        public Guid ForceFileId { get; set; }
 
         /// <summary>
         /// Sets the metadata JObject with pseudo-type conversion.

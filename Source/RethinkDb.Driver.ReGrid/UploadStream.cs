@@ -281,10 +281,7 @@ namespace RethinkDb.Driver.ReGrid
 
                 if( disposing )
                 {
-                    if( sha256 != null )
-                    {
-                        sha256.Dispose();
-                    }
+                    sha256?.Dispose();
                 }
             }
 

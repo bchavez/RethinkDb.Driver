@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>A C#/.NET RethinkDB database driver with 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.</Description>
     <PackageReleaseNotes>
@@ -32,7 +32,7 @@
     <DefineConstants>$(DefineConstants);STANDARD</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <PackageReference Include="Common.Logging" Version="3.3.0" />

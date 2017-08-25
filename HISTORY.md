@@ -1,5 +1,6 @@
 ## v2.3.20
-* Upgrade Newtonsoft dependency to v10.0.2.
+* Upgrade Newtonsoft dependency to v10.0.3.
+* Migration to **.NET Standard 2.0**.
 
 ## v2.3.19
 * Issue 113: Allow client-side generation of ReGrid file ids.

@@ -61,7 +61,7 @@ Install-Package RethinkDb.Driver
 </tr>
 <tr>
  <td><strong>.NET Standard</strong></td>
- <td colspan='3' align='center'>All platforms supporting <strong>.NET Standard 1.3</strong> or higher.</br>Eg: <a href="https://docs.microsoft.com/en-us/dotnet/articles/standard/library#net-platforms-support"><strong>.NET Core 1.0</strong></a>.</td>
+ <td colspan='3' align='center'>All platforms supporting <strong>.NET Standard 2.0</strong> or higher.</br>Eg: <a href="https://docs.microsoft.com/en-us/dotnet/articles/standard/library#net-platforms-support"><strong>.NET Core 2.0</strong></a>.</td>
 </tr>
 <tr>
  <td><strong>Mono</strong></td>

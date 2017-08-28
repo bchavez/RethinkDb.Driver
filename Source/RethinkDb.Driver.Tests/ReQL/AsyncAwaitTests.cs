@@ -95,7 +95,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     consumed.Add(cursor.Current);
                 }
 
-                //mid way, we have a problme and cancle.
+                //mid way, we have a problem and cancel.
                 cts.Cancel();
 
                 Func<Task> action = async () => await cursor.MoveNextAsync(token);

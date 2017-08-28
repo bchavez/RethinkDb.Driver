@@ -319,7 +319,7 @@ namespace RethinkDb.Driver.Ast
         /// </summary>
         /// <remarks>
         /// The implementation of PropertyHelper will cache the property accessors per-type. This is
-        /// faster when the the same type is used multiple times with ObjectToDictionary.
+        /// faster when the same type is used multiple times with ObjectToDictionary.
         /// </remarks>
         public static IDictionary<string, object> ObjectToDictionary(object value)
         {
@@ -445,7 +445,7 @@ namespace RethinkDb.Driver.Ast
                 // the type to see if we should include it.
                 var ignoreProperty = false;
 
-                // Walk up the hierarchy until we find the type that actally declares this
+                // Walk up the hierarchy until we find the type that actually declares this
                 // PropertyInfo.
                 var currentTypeInfo = type.GetTypeInfo();
                 var declaringTypeInfo = declaringType.GetTypeInfo();

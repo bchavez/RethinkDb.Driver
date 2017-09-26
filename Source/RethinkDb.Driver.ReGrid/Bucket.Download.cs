@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="options"><see cref="DownloadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         public async Task<byte[]> DownloadAsBytesByNameAsync(string filename, int revision = -1, DownloadOptions options = null,
-            CancellationToken cancelToken = default(CancellationToken))
+            CancellationToken cancelToken = default)
         {
             options = options ?? new DownloadOptions();
             var fileInfo = await this.GetFileInfoByNameAsync(filename, revision, cancelToken)
@@ -44,7 +44,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="filename">The file name</param>
         /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task<byte[]> DownloadAsBytesByNameAsync(string filename, CancellationToken cancelToken, int revision = -1)
+        public Task<byte[]> DownloadAsBytesByNameAsync(string filename, CancellationToken cancelToken = default, int revision = -1)
         {
             return DownloadAsBytesByNameAsync(filename, revision, null, cancelToken);
         }
@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="fileId">The fileId</param>
         /// <param name="options"><see cref="DownloadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public async Task<byte[]> DownloadAsBytesAsync(Guid fileId, DownloadOptions options = null, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<byte[]> DownloadAsBytesAsync(Guid fileId, DownloadOptions options = null, CancellationToken cancelToken = default)
         {
             options = options ?? new DownloadOptions();
             return await DownloadBytesHelperAsync(fileId, options, cancelToken)
@@ -78,7 +78,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         /// <param name="fileId">The fileId</param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task<byte[]> DownloadAsBytesAsync(Guid fileId, CancellationToken cancelToken)
+        public Task<byte[]> DownloadAsBytesAsync(Guid fileId, CancellationToken cancelToken = default)
         {
             return DownloadAsBytesAsync(fileId, null, cancelToken);
         }
@@ -104,7 +104,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="options"><see cref="DownloadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         public async Task DownloadToStreamAsync(Guid fileId, Stream destination, DownloadOptions options = null,
-            CancellationToken cancelToken = default(CancellationToken))
+            CancellationToken cancelToken = default)
         {
             options = options ?? new DownloadOptions();
             await DownloadToStreamHelperAsync(fileId, destination, options, cancelToken)
@@ -117,7 +117,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="fileId">The fileId</param>
         /// <param name="destination"></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task DownloadToStreamAsync(Guid fileId, Stream destination, CancellationToken cancelToken)
+        public Task DownloadToStreamAsync(Guid fileId, Stream destination, CancellationToken cancelToken = default)
         {
             return DownloadToStreamAsync(fileId, destination, null, cancelToken);
         }
@@ -144,7 +144,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="options"><see cref="DownloadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         public async Task DownloadToStreamByNameAsync(string filename, Stream destination, int revision = -1, DownloadOptions options = null,
-            CancellationToken cancelToken = default(CancellationToken))
+            CancellationToken cancelToken = default)
         {
             Ensure.IsNotNull(filename, nameof(filename));
             Ensure.IsNotNull(destination, nameof(destination));
@@ -163,7 +163,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         /// <param name="destination">The destination stream to write to.</param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task DownloadToStreamByNameAsync(string filename, Stream destination, CancellationToken cancelToken, int revision = -1)
+        public Task DownloadToStreamByNameAsync(string filename, Stream destination, CancellationToken cancelToken = default, int revision = -1)
         {
             return DownloadToStreamByNameAsync(filename, destination, revision, null, cancelToken);
         }
@@ -189,7 +189,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="options"><see cref="DownloadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         public async Task<DownloadStream> OpenDownloadStreamAsync(string filename, DownloadOptions options = null, int revision = -1,
-            CancellationToken cancelToken = default(CancellationToken))
+            CancellationToken cancelToken = default)
         {
             options = options ?? new DownloadOptions();
 
@@ -205,7 +205,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="filename">The file name</param>
         /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task<DownloadStream> OpenDownloadStreamAsync(string filename, CancellationToken cancelToken, int revision = -1)
+        public Task<DownloadStream> OpenDownloadStreamAsync(string filename, CancellationToken cancelToken = default, int revision = -1)
         {
             return OpenDownloadStreamAsync(filename, null, revision, cancelToken);
         }

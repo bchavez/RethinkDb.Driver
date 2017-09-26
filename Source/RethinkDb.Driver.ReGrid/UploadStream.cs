@@ -82,7 +82,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Async close the upload stream.
         /// </summary>
-        public override async Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
+        public override async Task CloseAsync(CancellationToken cancelToken = default)
         {
             await this.CloseInternalAsync(cancelToken).ConfigureAwait(false);
 #if !STANDARD
@@ -95,7 +95,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         /// <param name="cancelToken"></param>
         /// <returns></returns>
-        public async Task AbortAsync(CancellationToken cancelToken = default(CancellationToken))
+        public async Task AbortAsync(CancellationToken cancelToken = default)
         {
             if( aborted ) return;
 
@@ -186,7 +186,7 @@ namespace RethinkDb.Driver.ReGrid
             return chunks;
         }
 
-        private async Task CloseInternalAsync(CancellationToken cancelToken = default(CancellationToken))
+        private async Task CloseInternalAsync(CancellationToken cancelToken = default)
         {
             if (this.closed) return;
 

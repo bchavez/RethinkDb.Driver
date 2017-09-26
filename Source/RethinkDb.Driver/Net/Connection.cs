@@ -218,7 +218,7 @@ namespace RethinkDb.Driver.Net
         /// been processed by the server. Note that this guarantee only apples to queries
         /// run on the same connection.
         /// </summary>
-        public virtual Task NoReplyWaitAsync(CancellationToken cancelToken = default(CancellationToken))
+        public virtual Task NoReplyWaitAsync(CancellationToken cancelToken = default)
         {
             return RunQueryWaitAsync(Query.NoReplyWait(NewToken()), cancelToken);
         }
@@ -227,7 +227,7 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Return the server name and server UUID being used by a connection.
         /// </summary>
-        public virtual async Task<Server> ServerAsync(CancellationToken cancelToken = default(CancellationToken))
+        public virtual async Task<Server> ServerAsync(CancellationToken cancelToken = default)
         {
             var response = await SendQuery(Query.ServerInfo(NewToken()), cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( response.Type == ResponseType.SERVER_INFO )

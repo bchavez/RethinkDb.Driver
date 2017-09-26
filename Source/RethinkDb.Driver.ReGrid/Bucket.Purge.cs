@@ -17,7 +17,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Erases all files from the system inside the bucket.
         /// </summary>
-        public async Task DestroyAsync(CancellationToken cancelToken = default(CancellationToken))
+        public async Task DestroyAsync(CancellationToken cancelToken = default)
         {
             try
             {

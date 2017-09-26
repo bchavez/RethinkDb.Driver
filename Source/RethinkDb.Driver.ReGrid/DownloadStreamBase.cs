@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         /// <returns></returns>
-        public override Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
+        public override Task CloseAsync(CancellationToken cancelToken = default)
         {
 #if !STANDARD
             base.Close();

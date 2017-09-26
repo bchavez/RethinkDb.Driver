@@ -84,7 +84,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Mounts the bucket. Mount is necessary before using a bucket to ensure the existence of tables and indexes.
         /// </summary>
-        public async Task MountAsync(CancellationToken cancelToken = default(CancellationToken))
+        public async Task MountAsync(CancellationToken cancelToken = default)
         {
             if( this.Mounted )
                 return;
@@ -133,7 +133,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Helper function to create an index
         /// </summary>
-        protected internal async Task<JArray> CreateIndex(string tableName, string indexName, ReqlFunction1 indexFunc, CancellationToken cancelToken)
+        protected internal async Task<JArray> CreateIndex(string tableName, string indexName, ReqlFunction1 indexFunc, CancellationToken cancelToken = default)
         {
             await this.db.Table(tableName)
                 .IndexCreate(indexName, indexFunc).RunAtomAsync<JObject>(conn, cancelToken)
@@ -147,7 +147,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Helper function to ensure table exists.
         /// </summary>
-        protected internal async Task<Result> EnsureTable(string tableName, CancellationToken cancelToken)
+        protected internal async Task<Result> EnsureTable(string tableName, CancellationToken cancelToken = default)
         {
             return await this.db.TableList().Contains(tableName)
                 .Do_(tableExists =>

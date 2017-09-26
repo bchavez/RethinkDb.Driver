@@ -17,7 +17,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="source">Source bytes</param>
         /// <param name="options"><see cref="UploadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public async Task<Guid> UploadAsync(string filename, byte[] source, UploadOptions options = null, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<Guid> UploadAsync(string filename, byte[] source, UploadOptions options = null, CancellationToken cancelToken = default)
         {
             using( var ms = new MemoryStream(source) )
             {
@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="filename">The file name</param>
         /// <param name="source">Source bytes</param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task<Guid> UploadAsync(string filename, byte[] source, CancellationToken cancelToken)
+        public Task<Guid> UploadAsync(string filename, byte[] source, CancellationToken cancelToken = default)
         {
             return UploadAsync(filename, source, null, cancelToken);
         }
@@ -44,7 +44,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="source">Source stream</param>
         /// <param name="options"><see cref="UploadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public async Task<Guid> UploadAsync(string filename, Stream source, UploadOptions options = null, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<Guid> UploadAsync(string filename, Stream source, UploadOptions options = null, CancellationToken cancelToken = default)
         {
             options = options ?? new UploadOptions();
             var uploadStream = await OpenUploadStreamAsync(filename, options, cancelToken).ConfigureAwait(false);
@@ -99,7 +99,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="filename">The file name</param>
         /// <param name="source">Source stream</param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task<Guid> UploadAsync(string filename, Stream source, CancellationToken cancelToken)
+        public Task<Guid> UploadAsync(string filename, Stream source, CancellationToken cancelToken = default)
         {
             return UploadAsync(filename, source, null, cancelToken);
         }
@@ -143,7 +143,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="fileName">The file name</param>
         /// <param name="options"><see cref="UploadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public async Task<UploadStream> OpenUploadStreamAsync(string fileName, UploadOptions options = null, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<UploadStream> OpenUploadStreamAsync(string fileName, UploadOptions options = null, CancellationToken cancelToken = default)
         {
             options = options ?? new UploadOptions();
 
@@ -156,7 +156,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         /// <param name="fileName">The file name</param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public Task<UploadStream> OpenUploadStreamAsync(string fileName, CancellationToken cancelToken)
+        public Task<UploadStream> OpenUploadStreamAsync(string fileName, CancellationToken cancelToken = default )
         {
             return OpenUploadStreamAsync(fileName, null, cancelToken);
         }

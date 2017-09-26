@@ -139,7 +139,7 @@ namespace RethinkDb.Driver.Net
         ///       will advance the cursor normally and maintain ordering of items.
         ///   </para>
         /// </exception>
-        public async Task<bool> MoveNextAsync(CancellationToken cancelToken = default(CancellationToken))
+        public async Task<bool> MoveNextAsync(CancellationToken cancelToken = default)
         {
             cancelToken.ThrowIfCancellationRequested();
             while( items.Count == 0 )

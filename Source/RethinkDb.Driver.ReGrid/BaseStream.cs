@@ -26,6 +26,6 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Async closure of the stream.
         /// </summary>
-        public abstract Task CloseAsync(CancellationToken cancelToken = default(CancellationToken));
+        public abstract Task CloseAsync(CancellationToken cancelToken = default);
     }
 }

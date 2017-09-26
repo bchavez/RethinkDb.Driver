@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Gets all 'completed' file revisions for a given file. Deleted and incomplete files are excluded.
         /// </summary>
-        public static async Task<Cursor<FileInfo>> GetAllRevisionsAsync(this Bucket bucket, string filename, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<Cursor<FileInfo>> GetAllRevisionsAsync(this Bucket bucket, string filename, CancellationToken cancelToken = default)
         {
             filename = filename.SafePath();
 
@@ -55,7 +55,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Gets the FileInfo for a given fileId
         /// </summary>
-        public static async Task<FileInfo> GetFileInfoAsync(this Bucket bucket, Guid fileId, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<FileInfo> GetFileInfoAsync(this Bucket bucket, Guid fileId, CancellationToken cancelToken = default)
         {
             var fileInfo = await bucket.fileTable
                 .Get(fileId).RunAtomAsync<FileInfo>(bucket.conn, cancelToken)
@@ -88,7 +88,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         /// <param name="filename">The filename</param>
         public static async Task<FileInfo> GetFileInfoByNameAsync(this Bucket bucket, string filename, int revision = -1,
-            CancellationToken cancelToken = default(CancellationToken))
+            CancellationToken cancelToken = default)
         {
             filename = filename.SafePath();
 
@@ -135,7 +135,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="path">The path starting with /</param>
         /// <param name="bucket"><see cref="Bucket"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public static async Task<Cursor<FileInfo>> ListFilesByPrefixAsync(this Bucket bucket, string path, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<Cursor<FileInfo>> ListFilesByPrefixAsync(this Bucket bucket, string path, CancellationToken cancelToken = default)
         {
             path = path.SafePath();
 
@@ -178,7 +178,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         /// <param name="fileId"><see cref="FileInfo.Id"/></param>
         public static async Task DeleteRevisionAsync(this Bucket bucket, Guid fileId, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null,
-            CancellationToken cancelToken = default(CancellationToken))
+            CancellationToken cancelToken = default)
         {
             var result = await bucket.fileTable.Get(fileId)
                 .Update(

@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.ReGrid
         /// Enumerate the file system entries of a given particular status.
         /// </summary>
         public static async Task<Cursor<FileInfo>> EnumerateFileEntriesAsync(Bucket bucket, string filename, Status status,
-            CancellationToken cancelToken = default(CancellationToken))
+            CancellationToken cancelToken = default)
         {
             filename = filename.SafePath();
 
@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Enumerate all possible file system entries for a given filename
         /// </summary>
-        public static async Task<Cursor<FileInfo>> EnumerateFileEntriesAsync(Bucket bucket, string filename, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<Cursor<FileInfo>> EnumerateFileEntriesAsync(Bucket bucket, string filename, CancellationToken cancelToken = default)
         {
             filename = filename.SafePath();
 
@@ -82,7 +82,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Gets the enumeration of chunks for file id
         /// </summary>
-        public static async Task<Cursor<Chunk>> EnumerateChunksAsync(Bucket bucket, Guid fileId, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<Cursor<Chunk>> EnumerateChunksAsync(Bucket bucket, Guid fileId, CancellationToken cancelToken = default)
         {
             var index = new {index = bucket.chunkIndexName};
             return await bucket.chunkTable.Between(R.Array(fileId, R.Minval()), R.Array(fileId, R.Maxval()))[index]
@@ -102,7 +102,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Get a chunk in a bucket for file id.
         /// </summary>
-        public static async Task<Chunk> GetChunkAsync(Bucket bucket, Guid fileId, long n, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<Chunk> GetChunkAsync(Bucket bucket, Guid fileId, long n, CancellationToken cancelToken = default)
         {
             var index = new {index = bucket.chunkIndexName};
             return await bucket.chunkTable.GetAll(R.Array(fileId, n))[index]

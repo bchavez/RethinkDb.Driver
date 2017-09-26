@@ -80,7 +80,7 @@ namespace RethinkDb.Driver.ReGrid
                 }
             }
 
-            result = default(TimeSpan);
+            result = default;
             return false;
         }
     }

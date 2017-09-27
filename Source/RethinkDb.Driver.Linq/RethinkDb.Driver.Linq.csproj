@@ -6,6 +6,8 @@
     <Version>0.0.0-localbuild</Version>
     <Authors>Brian Chavez;jrote1</Authors>
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <CodeAnalysisRuleSet>RethinkDb.Driver.Linq.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
@@ -34,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Remotion.Linq" Version="2.1.1" />
+    <PackageReference Include="Roslynator.Analyzers" Version="1.5.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <PackageReference Include="Common.Logging" Version="3.3.0" />

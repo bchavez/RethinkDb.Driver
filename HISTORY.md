@@ -1,3 +1,6 @@
+# v2.3.21
+* ReGrid: Renamed bucket method `DestroyAsync` to `PergeAsync` to be consistent with non-async `Purge` call.
+
 ## v2.3.20
 * Upgrade Newtonsoft dependency to v10.0.3.
 * Migration to **.NET Standard 2.0**.

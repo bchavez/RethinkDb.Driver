@@ -11,13 +11,13 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         public void Purge()
         {
-            DestroyAsync().WaitSync();
+            PurgeAsync().WaitSync();
         }
 
         /// <summary>
         /// Erases all files from the system inside the bucket.
         /// </summary>
-        public async Task DestroyAsync(CancellationToken cancelToken = default)
+        public async Task PurgeAsync(CancellationToken cancelToken = default)
         {
             try
             {

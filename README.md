@@ -9,7 +9,7 @@ Project Description
 -------------------
 A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# with 100% **ReQL** API compatibility and completeness.
 
-This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same. Except this **C#** driver is a bit more *cool*, *stylish* and *kick-ass*. :sunglasses:
+This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same. Except this **C#** driver is a bit more [*cool*, *stylish* and *kick-ass*](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features). :sunglasses:
 
 ###### Standout Features
 * 1,200+ Unit Tests - This driver passes the same ***ReQL*** test harness as the [official drivers](http://rethinkdb.com/docs/install-drivers/).

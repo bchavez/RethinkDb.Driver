@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/GitHubBanner.png" style="max-width: 100%" />
 
-[![Build status](https://ci.appveyor.com/api/projects/status/8o06bhlnjss2n7k8/branch/master?svg=true)](https://ci.appveyor.com/project/bchavez/rethinkdb-driver/branch/master) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a>
+[![Build status](https://ci.appveyor.com/api/projects/status/8o06bhlnjss2n7k8/branch/master?svg=true)](https://ci.appveyor.com/project/bchavez/rethinkdb-driver/branch/master)
 
 RethinkDb.Driver
 ================
@@ -30,7 +30,7 @@ As long as SSL/TLS is not used when communicating with a **RethinkDB (server or 
 Independent commercial support and consulting are available for this driver. To ensure best practices in .NET, proper driver usage, training, and critical bug fixes for the **C#** driver contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez), [email](https://github.com/bchavez)) for more information.
 
 ###### Community Support
-[**Slack** (http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many **RethinkDB** users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
+[**Slack** (https://rethinkdb.slack.com)](https://rethinkdb.slack.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many **RethinkDB** users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
 
 
 ## Download & Install
@@ -133,7 +133,7 @@ Documentation
 * [Threading Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/15)
 * [Connection Pooling Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/17)
 
-<a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a>
+[**RethinkDB** Slack Help](https://rethinkdb.slack.com)
 
 Quick Examples
 -----

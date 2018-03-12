@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Remotion.Linq.Clauses.Expressions;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.WhereClauseParsers.SubQueryVisitor;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Linq
 {
@@ -25,7 +26,7 @@ namespace RethinkDb.Driver.Linq
                 reqlExpr = ResolveMemberExpression( reqlExpr, (MemberExpression)expression.Expression );
             if( expression.Expression.NodeType == ExpressionType.Extension && expression.Expression is SubQueryExpression )
                 reqlExpr = ResolveExtensionExpression( reqlExpr, (SubQueryExpression)expression.Expression );
-            return reqlExpr[expression.Member.Name];
+            return reqlExpr[QueryHelper.GetJsonMemberName( expression.Member )];
         }
 
         private static ReqlExpr ResolveExtensionExpression( ReqlExpr reqlExpr, SubQueryExpression expression )

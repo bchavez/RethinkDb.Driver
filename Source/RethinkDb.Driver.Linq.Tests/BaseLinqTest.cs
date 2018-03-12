@@ -13,6 +13,7 @@ using RethinkDb.Driver.Linq.Attributes;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Proto;
 using RethinkDb.Driver.Tests;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
@@ -101,7 +102,7 @@ namespace RethinkDb.Driver.Linq.Tests
             var secondaryIndexes = typeof( T ).GetProperties().Where( x => x.CustomAttributes.Any( a => a.AttributeType == typeof( SecondaryIndexAttribute ) ) );
             foreach( var secondaryIndex in secondaryIndexes )
             {
-                RethinkDB.R.Table( TableName ).IndexCreate( secondaryIndex.Name ).Run( Connection );
+                RethinkDB.R.Table( TableName ).IndexCreate( QueryHelper.GetJsonMemberName( secondaryIndex ) ).Run( Connection );
             }
             RethinkDB.R.Table( TableName ).IndexWait().Run( Connection );
 

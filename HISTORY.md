@@ -1,3 +1,6 @@
+# v2.3.22
+* Issue #125 - Fixed LINQ provider not using Newtonsoft.Json naming strategy.
+
 # v2.3.21
 * ReGrid: Renamed bucket method `DestroyAsync` to `PergeAsync` to be consistent with non-async `Purge` call.
 

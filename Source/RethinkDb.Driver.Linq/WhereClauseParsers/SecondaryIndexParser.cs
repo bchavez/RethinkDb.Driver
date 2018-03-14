@@ -2,6 +2,7 @@
 using Remotion.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.Attributes;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Linq.WhereClauseParsers
 {
@@ -18,7 +19,8 @@ namespace RethinkDb.Driver.Linq.WhereClauseParsers
         private static string GetIndexName( BinaryExpression binaryExpression )
         {
             var left = binaryExpression.Left as MemberExpression;
-            return left?.Member.Name ?? ( (MemberExpression)binaryExpression.Right ).Member.Name;
+            var memberExpression = left ?? ( (MemberExpression)binaryExpression.Right );
+            return QueryHelper.GetJsonMemberName( memberExpression.Member );
         }
     }
 }

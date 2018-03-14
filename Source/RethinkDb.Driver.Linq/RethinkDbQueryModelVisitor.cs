@@ -12,6 +12,7 @@ using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.Attributes;
 using RethinkDb.Driver.Linq.WhereClauseParsers;
 using ExpressionVisitor = RethinkDb.Driver.Linq.WhereClauseParsers.ExpressionVisitor;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Linq
 {
@@ -102,13 +103,14 @@ namespace RethinkDb.Driver.Linq
 
             OrderBy reql;
             var currentStack = Stack.Pop();
+            var memberName = QueryHelper.GetJsonMemberName( expression.Member );
             if( orderByClause.Orderings[0].OrderingDirection == OrderingDirection.Asc )
-                reql = currentStack.OrderBy( expression.Member.Name );
+                reql = currentStack.OrderBy( memberName );
             else
-                reql = currentStack.OrderBy( RethinkDB.R.Desc( expression.Member.Name ) );
+                reql = currentStack.OrderBy( RethinkDB.R.Desc( memberName ) );
 
             if( currentStack is Table && expression.Member.CustomAttributes.Any( x => x.AttributeType == typeof( PrimaryIndexAttribute ) || x.AttributeType == typeof( SecondaryIndexAttribute ) ) )
-                reql = reql.OptArg( "index", expression.Member.Name );
+                reql = reql.OptArg( "index", memberName );
 
             Stack.Push( reql );
         }
@@ -153,10 +155,12 @@ namespace RethinkDb.Driver.Linq
                 return;
             }
 
-            var groupReql = Stack.Pop().Group( ( (MemberExpression)group.KeySelector ).Member.Name );
+            
+            var keySelector = (MemberExpression)group.KeySelector;
+            var groupReql = Stack.Pop().Group( QueryHelper.GetJsonMemberName( keySelector.Member ) );
 
             var memberAccess = group.ElementSelector as MemberExpression;
-            Stack.Push( memberAccess != null ? groupReql.GetField( memberAccess.Member.Name ).Ungroup() : groupReql.Ungroup() );
+            Stack.Push( memberAccess != null ? groupReql.GetField( QueryHelper.GetJsonMemberName( memberAccess.Member ) ).Ungroup() : groupReql.Ungroup() );
         }
 
         public override void VisitResultOperator( ResultOperatorBase resultOperator, QueryModel queryModel, int index )

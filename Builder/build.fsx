@@ -124,18 +124,18 @@ Target "msb" (fun _ ->
                         "AssemblyOriginatorKeyFile", Projects.SnkFile
                         "SignAssembly", BuildContext.IsTaggedBuild.ToString()
                      ]
-
+   
+    //DO NOT OVERRIDE THE OutputPath PROPERTY as it is very dangerous
+    //to do so with multi-target builds (net45;netstandard2.0)
     !! DriverProject.ProjectFile
-    |> MSBuildReleaseExt (DriverProject.OutputDirectory @@ tag) buildProps "Build"
+    ++ LinqProject.ProjectFile
+    ++ GridProject.ProjectFile
+    |> MSBuildReleaseExt null buildProps "Build"
     |> Log "AppBuild-Output: "
 
-    !! LinqProject.ProjectFile
-    |> MSBuildReleaseExt (LinqProject.OutputDirectory @@ tag) buildProps "Build"
-    |> Log "AppBuild-Output: "
-
-    !! GridProject.ProjectFile
-    |> MSBuildReleaseExt (GridProject.OutputDirectory @@ tag) buildProps "Build"
-    |> Log "AppBuild-Output: "
+    traceFAKE "Copying MS Build outputs..."
+    for p in [DriverProject; LinqProject; GridProject;] do
+       CopyDir (p.OutputDirectory @@ tag) p.MsBuildBinRelease allFiles
 
     !! TestDriverProject.ProjectFile
     |> MSBuild "" "Build" (("Configuration", "Debug")::buildProps)

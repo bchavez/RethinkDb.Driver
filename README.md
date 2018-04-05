@@ -16,6 +16,9 @@ This driver is based on the *official* [Java Driver](https://github.com/rethinkd
 * [Awesome documentation](https://github.com/bchavez/RethinkDb.Driver/wiki).
 * [ReGrid Support](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage) - Distributed Large Binary Storage
 
+###### The Crypto Tip Jar!
+<a href="https://commerce.coinbase.com/checkout/a765bbf2-c5fa-44fb-a801-84249dd465a8"><img src="https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/tipjar.png" /></a>
+
 ## Open-Source and Commercial Licensing
 This open-source driver is dual-licensed. Please read below about SSL/TLS restrictions.
 

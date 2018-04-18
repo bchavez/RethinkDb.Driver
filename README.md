@@ -39,7 +39,7 @@ Independent commercial support and consulting are available for this driver. To 
 ## Download & Install
 **NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/RethinkDb.Driver/)**
 
-```
+```powershell
 Install-Package RethinkDb.Driver
 ```
 

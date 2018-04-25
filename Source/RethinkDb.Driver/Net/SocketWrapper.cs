@@ -301,6 +301,12 @@ namespace RethinkDb.Driver.Net
         public virtual Task<Response> SendQuery(long token, string json, bool awaitResponse, CancellationToken cancelToken)
         {
             cancelToken.ThrowIfCancellationRequested();
+
+            if( this.Closed )
+            {
+                throw new ReqlDriverError($"Threads may not {nameof(SendQuery)} because the connection is closed.");
+            }
+
             if( pump.IsCancellationRequested )
             {
                 throw new ReqlDriverError($"Threads may not {nameof(SendQuery)} because the connection is shutting down.");

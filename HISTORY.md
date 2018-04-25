@@ -1,3 +1,7 @@
+## v2.3.23
+* Issue #128 - NullReferenceException when executing query after failed reconnect.
+* Renamed `val` parameters on `Connection.Builder` for better readability and IntelliSense. 
+
 ## v2.3.22
 * Issue #125 - Fixed LINQ provider not using Newtonsoft.Json naming strategy.
 * ReGrid: Renamed bucket method `DestroyAsync` to `PergeAsync` to be consistent with non-async `Purge` call.

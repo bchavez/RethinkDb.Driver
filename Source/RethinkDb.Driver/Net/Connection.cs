@@ -576,28 +576,28 @@ namespace RethinkDb.Driver.Net
             /// <summary>
             /// The hostname or IP address of the server.
             /// </summary>
-            /// <param name="val">Hostname or IP address</param>
-            public virtual Builder Hostname(string val)
+            /// <param name="hostnameOrIp">Hostname or IP address</param>
+            public virtual Builder Hostname(string hostnameOrIp)
             {
-                this.hostname = val;
+                this.hostname = hostnameOrIp;
                 return this;
             }
 
             /// <summary>
             /// The TCP port to connect with.
             /// </summary>
-            public virtual Builder Port(int val)
+            public virtual Builder Port(int driverPort)
             {
-                this.port = val;
+                this.port = driverPort;
                 return this;
             }
 
             /// <summary>
             /// The default DB for queries.
             /// </summary>
-            public virtual Builder Db(string val)
+            public virtual Builder Db(string database)
             {
-                this.dbname = val;
+                this.dbname = database;
                 return this;
             }
 
@@ -623,11 +623,11 @@ namespace RethinkDb.Driver.Net
             /// <summary>
             /// Note: Timeout is not used when using connectAsync();
             /// </summary>
-            /// <param name="val"></param>
+            /// <param name="seconds"></param>
             /// <returns></returns>
-            public virtual Builder Timeout(int val)
+            public virtual Builder Timeout(int seconds)
             {
-                this.timeout = TimeSpan.FromSeconds(val);
+                this.timeout = TimeSpan.FromSeconds(seconds);
                 return this;
             }
 

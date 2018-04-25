@@ -302,7 +302,7 @@ namespace RethinkDb.Driver.Net
         {
             cancelToken.ThrowIfCancellationRequested();
 
-            if( Closed )
+            if( this.Closed )
             {
                 throw new ReqlDriverError($"Threads may not {nameof(SendQuery)} because the connection is closed.");
             }

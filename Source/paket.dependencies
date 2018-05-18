@@ -1,5 +1,5 @@
 version 4.4.0
 
-source https://www.nuget.org/api/v2
+source https://api.nuget.org/v3/index.json
 
 //nuget ConfigureAwaitChecker.Analyzer == 1.0.0-beta4

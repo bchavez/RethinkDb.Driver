@@ -2,9 +2,8 @@ General Help
 ------------
 General help with ReQL questions can be found on:
 
-* **Slack**: Primary means of getting help is on [**Slack**](http://slack.rethinkdb.com) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a>  If you don't receive the invite, check your spam folder.
-* **IRC Freenode**: Use [WebChat](http://webchat.freenode.net/?channels=rethinkdb) and join `#rethinkdb` channel. Alternatively, [HexChat](https://hexchat.github.io/) a good native windows IRC client.
-  
+* **Gitter**: Primary means of getting help is on [**Gitter**](https://gitter.im/bchavez/RethinkDb.Driver) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a>  If you don't receive the invite, check your spam folder.
+
 
 Pull Requests
 ------------

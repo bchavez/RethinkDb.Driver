@@ -33,7 +33,7 @@ As long as SSL/TLS is not used when communicating with a **RethinkDB (server or 
 Independent commercial support and consulting are available for this driver. To ensure best practices in .NET, proper driver usage, training, and critical bug fixes for the **C#** driver contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez), [email](https://github.com/bchavez)) for more information.
 
 ###### Community Support
-[**Gitter.im** (https://gitter.im/bchavez/RethinkDb.Driver)](https://gitter.im/bchavez/RethinkDb.Driver) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
+**Discord** ([**Server 1**](https://discord.gg/ZeEq5TE), [**2**](https://discord.gg/UbQyNNs)) and [**Gitter.im**](https://gitter.im/bchavez/RethinkDb.Driver) are the primary means of getting help for free. **Discord** is recommended since voice chat can be helpful when debugging support issues. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
 
 
 ## Download & Install
@@ -136,6 +136,7 @@ Documentation
 * [Threading Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/15)
 * [Connection Pooling Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/17)
 
+[**RethinkDB** Discord Help](https://discord.gg/wnkWBVh)
 [**RethinkDB** Gitter Help](https://gitter.im/bchavez/RethinkDb.Driver)
 
 Quick Examples

@@ -207,9 +207,16 @@ namespace RethinkDb.Driver.Net
                     }
                     this.SequenceFinished();
                 }
+                else if ( response.IsError )
+                {
+                    var ex = response.MakeError(Query.Continue(this.Token));
+                    this.Shutdown(ex);
+                    throw ex;
+                }
                 else
                 {
-                    throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
+                    throw new NotSupportedException(
+                        $"Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE. The response type the cursor received was {response.Type}.");
                 }
             }
         }
@@ -248,29 +255,40 @@ namespace RethinkDb.Driver.Net
             this.Shutdown("The Cursor was forcibly closed. Iteration cannot continue.");
         }
 
-        void Shutdown(string reason)
+
+        void Shutdown(Exception ex)
         {
-            if( this.conn.Open && this.IsOpen )
+            if (this.conn.Open && this.IsOpen)
             {
                 conn.RemoveFromCache(this.Token);
-                if( !sequenceFinished )
+                if (!sequenceFinished)
                 {
                     conn.Stop(this);
                 }
-                SetError(reason);
+                SetError(ex);
             }
             else
             {
-                SetError(reason);
+                SetError(ex);
             }
+        }
+
+        void Shutdown(string reason)
+        {
+            Shutdown(new InvalidOperationException(reason));
+        }
+
+        internal void SetError(Exception ex)
+        {
+            if (this.Error != null) return;
+            this.Error = ex;
         }
 
         //Some trickery just so we don't expose SetError
         //on the public API surface.
         internal void SetError(string msg)
         {
-            if( this.Error != null ) return;
-            this.Error = new InvalidOperationException(msg);
+            SetError(new InvalidOperationException(msg));
         }
 
         void ICursor.SetError(string msg)

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>A C#/.NET RethinkDB database driver with 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.</Description>
     <PackageReleaseNotes>
@@ -6,7 +6,7 @@
     <Version>0.0.0-localbuild</Version>
     <Authors>Brian Chavez</Authors>
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.3</LangVersion>
     <CodeAnalysisRuleSet>RethinkDb.Driver.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>

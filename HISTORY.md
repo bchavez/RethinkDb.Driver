@@ -1,3 +1,7 @@
+## v2.3.24
+* Issue #138 - Better error handling in cursors.
+* **POSSIBLE BREAKING CHANGE:** Previously, when an error response was received during cursor enumeration a `NotSupportedException` was thrown. Issue #138 changes this behavior by throwing more detailed (and more specific) exception based on the response from the server. For example, the driver will throw a `ReqlOpFailedError` exception if a cursor change feed is interrupted behind a RethinkDB proxy instead of throwing a generic `NotSupportedException`. 
+
 ## v2.3.23
 * Issue #128 - NullReferenceException when executing query after failed reconnect.
 * Renamed `val` parameters on `Connection.Builder` for better readability and IntelliSense. 

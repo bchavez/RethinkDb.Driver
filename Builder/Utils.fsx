@@ -129,7 +129,6 @@ type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
 
     let nugetSpecFileName = sprintf "%s.nuspec" name
     let nugetPkg = folders.Package @@ sprintf "%s.%s.nupkg" name BuildContext.FullVersion
-    let nugetPkgSymbols = changeExt "symbols.nupkg" nugetPkg
 
     let zip = folders.Package @@ sprintf "%s.zip" name
 
@@ -139,7 +138,6 @@ type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
     
     member this.NugetSpec = nugetSpecFileName
     member this.NugetPkg = nugetPkg
-    member this.NugetPkgSymbols = nugetPkgSymbols
     
     member this.Title = assemblyTitle
 
@@ -348,7 +346,7 @@ module Helpers =
             | Publish -> (failwith "Only CI server should publish on NuGet")
 
     let DotnetPack (project: NugetProject) (output: string) =
-        let packArgs = sprintf "pack --include-symbols --include-source --configuration Release --output %s" output
+        let packArgs = sprintf "pack --configuration Release --output %s" output
         dotnet packArgs project.Folder
 
     let DotnetBuild (target: NugetProject) (output: string) = 

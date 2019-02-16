@@ -6,27 +6,22 @@
     <Version>0.0.0-localbuild</Version>
     <Authors>Brian Chavez</Authors>
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
-    <LangVersion>7.3</LangVersion>
     <CodeAnalysisRuleSet>RethinkDb.Driver.ReGrid.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <SignAssembly>false</SignAssembly>
     <AssemblyName>RethinkDb.Driver.ReGrid</AssemblyName>
-    <PackageTags>rethinkdb;database;driver;reql;gridfs;regrid</PackageTags>
+    <PackageTags>rethinkdb;document;database;driver;reql;gridfs;regrid;nosql</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/bchavez/RethinkDb.Driver</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/bchavez/RethinkDb.Driver</RepositoryUrl>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <!--Source Link Settings-->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>false</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <DefineConstants>$(DefineConstants);STANDARD</DefineConstants>
@@ -36,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Roslynator.Analyzers" Version="1.5.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <PackageReference Include="Common.Logging" Version="3.3.0" />

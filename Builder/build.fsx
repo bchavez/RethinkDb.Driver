@@ -206,10 +206,8 @@ Target "nuget" (fun _ ->
 
     let files = [
                     LinqProject.NugetPkg, LinqProject.NugetSpec
-                    LinqProject.NugetPkgSymbols, LinqProject.NugetSpec
 
                     GridProject.NugetPkg, GridProject.NugetSpec
-                    GridProject.NugetPkgSymbols, GridProject.NugetSpec
                 ]
 
     let exactNugetVersion = [

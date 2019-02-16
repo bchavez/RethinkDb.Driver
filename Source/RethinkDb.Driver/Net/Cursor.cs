@@ -22,9 +22,12 @@ namespace RethinkDb.Driver.Net
 
         private bool TIsJToken = false;
 
+        private Query query;
+
         internal Cursor(Connection conn, Query query, Response firstResponse)
         {
             this.conn = conn;
+            this.query = query;
             this.IsFeed = firstResponse.IsFeed;
             this.Token = query.Token;
             this.TIsJToken = typeof(T).IsJToken();
@@ -209,7 +212,7 @@ namespace RethinkDb.Driver.Net
                 }
                 else if ( response.IsError )
                 {
-                    var ex = response.MakeError(Query.Continue(this.Token));
+                    var ex = response.MakeError(query);
                     this.Shutdown(ex);
                     throw ex;
                 }

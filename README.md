@@ -96,6 +96,7 @@ Documentation
   * [Cursor[T]](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#cursort-support)
   * [Run Helpers](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#run-helpers)
      * [`.RunAtom`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runatom)
+     * [`.RunWrite`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runwrite)
      * [`.RunCursor`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runcursor)
      * [`.RunResult`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runresult)
      * [`.RunChanges`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runchangest)

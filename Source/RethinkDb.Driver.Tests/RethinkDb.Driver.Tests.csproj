@@ -126,6 +126,7 @@
     <Compile Include="Network\Benchmark.cs" />
     <Compile Include="Network\ConnectionPoolTests.cs" />
     <Compile Include="Network\ConnectionTest.cs" />
+    <Compile Include="Network\LicenseTests.cs" />
     <Compile Include="QueryTestFixture.cs" />
     <Compile Include="ReqlRawTests.cs" />
     <Compile Include="ReQL\AsyncAwaitTests.cs" />

@@ -1,4 +1,5 @@
 ## v2.3.25
+* First batch of expired commercial licenses have been banned for use.
 * **POSSIBLE BREAKING CHANGE:** `.RunResult` for `Result` (DML) type responses that correspond to inserts, deletes, updates has been renamed to `.RunWrite`. Please use the new method name instead. **Note:** The `.RunResult<T>` for `T` type responses will not be obsoleted. The reason for the former `.RunResult` method rename is to avoid confusion between `.RunResult` and `.RunResult<T>`. The obsoleted methods produce compiler warnings in this version. If no compiler warnings are produced, no changes are necessary. The obsolete methods will be removed in the next major RethinkDB driver release (2.4).
 
 ## v2.3.24

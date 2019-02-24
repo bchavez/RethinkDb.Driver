@@ -705,8 +705,16 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        private static void AssertKeyIsNotBanned(string licenseKey)
+        internal static void AssertKeyIsNotBanned(string licenseKey)
         {
+            var isBanned =
+                licenseKey.StartsWith(
+                    "fuIIq8Pre2NzXVi0otn54PCx22NNAbNReAsk/ylDIV/ZrWeC60B+C76oj3/Ptb8b02vxPYdN6nR2nz3IgYG/O6Zy5TKoYl2UnR2aNq8sKxjv9siwsjMS82EZB8pxs0UwPoz+xmrKY40sqiIz+thDI2EH1MlGoZd+KfJImJp7fvI=")
+                ||
+                licenseKey.StartsWith(
+                    "tE4z+qpOuKWP4XfmAbnyepzI6m/qx2DaI+aDkMes94ujERmA7O6bb0100+LiClLymVLXYXNvkRBg7ot6NGlfyli/8x1h3IgL+HD8gFoWdTAN4oG8wE8ZyrFugnqmAHUDAy4h/KrOqB8VUXwGQh8Y/0ZxOBQb0KOaZJC/MUMbve8=");
+
+            if( isBanned ) throw new UnauthorizedAccessException("The license key has expired.");
         }
     }
 }

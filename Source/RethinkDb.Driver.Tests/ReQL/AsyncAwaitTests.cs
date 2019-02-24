@@ -37,7 +37,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var result = await R.Db(DbName).Table(TableName)
                                 .Insert(games)
-                                .RunResultAsync(conn);
+                                .RunWriteAsync(conn);
 
             result.AssertInserted(4);
         }

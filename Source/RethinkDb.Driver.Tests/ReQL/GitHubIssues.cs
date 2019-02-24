@@ -76,13 +76,13 @@ namespace RethinkDb.Driver.Tests.ReQL
             table.Delete().Run(conn);
 
             Console.WriteLine(">>> INSERT");
-            var result = table.Insert(new {foo = "bar"}).RunResult(conn);
+            var result = table.Insert(new {foo = "bar"}).RunWrite(conn);
             var id = result.GeneratedKeys[0];
             result.AssertInserted(1);
 
             Console.WriteLine(">>> UPDATE 1 / VALUE 1");
             var value = "VALUE1";
-            result = table.Get(id).update(new {Target = value}).RunResult(conn);
+            result = table.Get(id).update(new {Target = value}).RunWrite(conn);
             result.Dump();
 
             Console.WriteLine(">>> UPDATE 2 / VALUE 2");
@@ -121,7 +121,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             var table = R.Db(DbName).Table(TableName);
             table.Delete().Run(conn);
 
-            var result = table.Insert(jObject).RunResult(conn);
+            var result = table.Insert(jObject).RunWrite(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
@@ -173,7 +173,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 // ignored
             }
 
-            Action action = () => R.DbCreate(DbName).RunResult(conn);
+            Action action = () => R.DbCreate(DbName).RunWrite(conn);
 
             action.ShouldThrow<ReqlRuntimeError>();
         }
@@ -197,7 +197,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 .Db(DbName)
                 .Table(TableName)
                 .Insert(new Issue49 {BigBang = mindate})
-                .RunResult(conn);
+                .RunWrite(conn);
 
             insertResult.Errors.Should().Be(0);
 
@@ -211,7 +211,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                             return R.Error(unchanged.CoerceTo("string"));
                         })
                 .OptArg("return_changes", true)
-                .RunResult(conn);
+                .RunWrite(conn);
 
             updateResult.Errors.Should().Be(1);
             updateResult.FirstError.Should().Be("true");
@@ -279,7 +279,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             DropTable(DbName, TableName);
             CreateTable(DbName, TableName);
 
-            var insertResult = table.Insert(R.Json(issues)).RunResult(conn);
+            var insertResult = table.Insert(R.Json(issues)).RunWrite(conn);
 
             insertResult.AssertInserted(3);
 

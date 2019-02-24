@@ -43,7 +43,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
         protected void DropFilesTable()
         {
-            var result = db.TableDrop(this.fileTableName).RunResult(this.conn);
+            var result = db.TableDrop(this.fileTableName).RunWrite(this.conn);
             result.AssertTablesDropped(1);
         }
 

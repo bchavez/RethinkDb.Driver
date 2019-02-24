@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Tests.Network
             {
                 R.db(DbName).table(TableName)
                     .insert(docs.Generate())
-                    .RunResult(conn);
+                    .RunWrite(conn);
             }
             
 

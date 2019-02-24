@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             };
 
             Console.WriteLine(">>> INSERT");
-            var result = table.Insert(state).RunResult(conn);
+            var result = table.Insert(state).RunWrite(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
@@ -107,7 +107,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             var table = R.Db(DbName).Table(TableName);
             table.Delete().Run(conn);
 
-            var result = table.Insert(obj).RunResult(conn);
+            var result = table.Insert(obj).RunWrite(conn);
             var id = result.GeneratedKeys[0];
 
             var check = table.Get(id).RunAtom<JObject>(conn);

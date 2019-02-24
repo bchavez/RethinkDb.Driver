@@ -316,7 +316,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                             new {tables_created = 0}, /* If False */
                             R.Db(DbName).TableCreate("newTable") /* If true */
                             );
-                    }).RunResult(conn);
+                    }).RunWrite(conn);
 
             newTableResult.Dump();
         }

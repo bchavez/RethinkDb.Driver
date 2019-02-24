@@ -185,7 +185,7 @@ namespace RethinkDb.Driver.ReGrid
                     R.HashMap(FileInfo.StatusJsonName, Status.Deleted)
                         .With(FileInfo.DeletedDateJsonName, DateTimeOffset.UtcNow)
                 )[deleteOpts]
-                .RunResultAsync(bucket.conn, cancelToken)
+                .RunWriteAsync(bucket.conn, cancelToken)
                 .ConfigureAwait(false);
 
             result.AssertReplaced(1);
@@ -197,12 +197,12 @@ namespace RethinkDb.Driver.ReGrid
                     R.Array(fileId, R.Minval()),
                     R.Array(fileId, R.Maxval()))[new {index = bucket.chunkIndexName}]
                     .Delete()[deleteOpts]
-                    .RunResultAsync(bucket.conn, cancelToken)
+                    .RunWriteAsync(bucket.conn, cancelToken)
                     .ConfigureAwait(false);
 
                 //then delete the file.
                 await bucket.fileTable.Get(fileId).Delete()[deleteOpts]
-                    .RunResultAsync(bucket.conn, cancelToken)
+                    .RunWriteAsync(bucket.conn, cancelToken)
                     .ConfigureAwait(false);
             }
         }

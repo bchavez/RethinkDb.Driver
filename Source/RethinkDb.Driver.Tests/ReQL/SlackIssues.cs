@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var inserts = R.Db(DbName).Table(TableName)
                 .Insert(items)
-                .RunResult(conn);
+                .RunWrite(conn);
 
             var guids = inserts.GeneratedKeys.ToList();
 
@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                         }
                 };
 
-            var result = R.Db(DbName).Table(TableName).Insert(poco).RunResult(conn);
+            var result = R.Db(DbName).Table(TableName).Insert(poco).RunWrite(conn);
             result.AssertInserted(1);
         }
 
@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
             
             var insertResult = R.Db(DbName).Table(TableName).Insert(obj)
-                .RunResult(conn);
+                .RunWrite(conn);
 
             insertResult.Dump();
 
@@ -110,7 +110,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             timeThing.Type.Should().Be(JTokenType.String);
 
             var putBack = R.Db(DbName).Table(TableName).Update(getResult)
-                .RunResult(conn);
+                .RunWrite(conn);
 
             putBack.Dump();
         }

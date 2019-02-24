@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Tests.Network
                 .Connect();
 
             R.Db("rethinkdb").Table("users").Get(bogusUsername)
-                .Delete().RunResult(adminConn);
+                .Delete().RunWrite(adminConn);
 
             adminConn.Close();
         }

@@ -38,7 +38,7 @@ namespace RethinkDb.Driver.Linq.Tests
             R.Db(DbName)
                 .Table(TableName)
                 .Insert(games)
-                .RunResult(conn)
+                .RunWrite(conn)
                 .AssertInserted(4);
 
             // Query games table via LINQ to ReQL
@@ -92,7 +92,7 @@ namespace RethinkDb.Driver.Linq.Tests
             //Insert some games
             R.Db(DbName).Table(TableName)
                 .Insert(games)
-                .RunResult(conn)
+                .RunWrite(conn)
                 .AssertInserted(4);
 
             // Query games table via LINQ to ReQL

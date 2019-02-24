@@ -161,7 +161,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             var chunks = PrepareChunks();
 
-            await chunkTable.Insert(chunks.ToArray())[chunkInsertOpts].RunResultAsync(conn, cancelToken)
+            await chunkTable.Insert(chunks.ToArray())[chunkInsertOpts].RunWriteAsync(conn, cancelToken)
                 .ConfigureAwait(false);
 
             this.batch.Clear();
@@ -208,7 +208,7 @@ namespace RethinkDb.Driver.ReGrid
             this.FileInfo.FinishedAtDate = DateTimeOffset.UtcNow;
             this.FileInfo.Status = Status.Completed;
 
-            await this.fileTable.Replace(this.FileInfo).RunResultAsync(conn, cancelToken)
+            await this.fileTable.Replace(this.FileInfo).RunWriteAsync(conn, cancelToken)
                 .ConfigureAwait(false);
         }
 

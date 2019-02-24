@@ -152,7 +152,7 @@ namespace RethinkDb.Driver.ReGrid
             return await this.db.TableList().Contains(tableName)
                 .Do_(tableExists =>
                     R.Branch(tableExists, new {tables_created = 0}, db.TableCreate(tableName)[this.tableCreateOpts])
-                ).RunResultAsync(this.conn, cancelToken)
+                ).RunWriteAsync(this.conn, cancelToken)
                 .ConfigureAwait(false);
         }
     }

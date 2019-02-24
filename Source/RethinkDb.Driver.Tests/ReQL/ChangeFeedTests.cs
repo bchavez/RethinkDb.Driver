@@ -17,7 +17,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             var result = R.Db(DbName).Table(TableName)
                 .Delete()[new { return_changes = true }]
-                .RunResult(conn)
+                .RunWrite(conn)
                 .AssertNoErrors();
 
             var changes = R.Db(DbName).Table(TableName)
@@ -76,7 +76,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             var result = R.Db(DbName).Table(TableName)
                 .Delete()[new { return_changes = true }]
-                .RunResult(conn)
+                .RunWrite(conn)
                 .AssertNoErrors();
 
             var changes = R.Db(DbName).Table(TableName)
@@ -135,7 +135,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             var result = R.Db(DbName).Table(TableName)
                 .Delete()[new { return_changes = true }]
-                .RunResult(conn)
+                .RunWrite(conn)
                 .AssertNoErrors();
 
             var changes = R.Db(DbName).Table(TableName)

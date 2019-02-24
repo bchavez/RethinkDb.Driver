@@ -136,7 +136,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                         new {name = "Session 4", track = "trackB"},
                         new {name = "Session 5", track = "trackC"},
                         new {name = "Session 6", track = "trackD"},
-                    }).RunResult(conn);
+                    }).RunWrite(conn);
 
             R.Db(DbName).Table(speakers)
                 .Insert(new[]
@@ -147,7 +147,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                         new {name = "Name D"},
                         new {name = "Name E"},
                         new {name = "Name F"},
-                    }).RunResult(conn);
+                    }).RunWrite(conn);
             
 
             var projection = new
@@ -188,7 +188,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             var result = table.Insert(poco)
-                .RunResult(conn);
+                .RunWrite(conn);
 
             result.Dump();
             result.GeneratedKeys[0].Should().NotBeEmpty();
@@ -216,7 +216,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             var result = table.Insert(poco)
-                .RunResult(conn);
+                .RunWrite(conn);
 
             result.Dump();
             var id = result.GeneratedKeys[0];

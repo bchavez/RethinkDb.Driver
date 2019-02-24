@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                                     }
                             }
                     })
-                    .RunResult(conn);
+                    .RunWrite(conn);
 
             var insertedId = result.GeneratedKeys[0];
 
@@ -43,7 +43,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                                 locations = new[] { "Seattle", "San Francisco" }
                             }
                     })
-                .RunResult(conn);
+                .RunWrite(conn);
 
 
             var newObj = R.Db(DbName).Table(TableName)

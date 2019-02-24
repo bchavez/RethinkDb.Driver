@@ -41,7 +41,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var result = R.Db(DbName).Table(TableName)
                 .Insert(arr)
-                .RunResult(conn);
+                .RunWrite(conn);
 
             result.AssertInserted(1);
 

@@ -86,7 +86,7 @@ namespace RethinkDb.Driver.Extras.Dao
         {
             var result = await this.Table
                 .Insert(doc)[returnChanges].OptArg("conflict", "error")
-                .RunResultAsync(conn)
+                .RunWriteAsync(conn)
                 .ConfigureAwait(false);
 
             result.AssertNoErrors();
@@ -127,7 +127,7 @@ namespace RethinkDb.Driver.Extras.Dao
             var result = await this.Table
                 .GetAll(doc.Id).OptArg("index", "id")
                 .Replace(doc)
-                .RunResultAsync(conn)
+                .RunWriteAsync(conn)
                 .ConfigureAwait(false);
 
             result.AssertNoErrors();
@@ -151,7 +151,7 @@ namespace RethinkDb.Driver.Extras.Dao
         {
             var result = await this.Table
                 .Insert(doc)[returnChanges].OptArg("conflict", "replace")
-                .RunResultAsync(conn)
+                .RunWriteAsync(conn)
                 .ConfigureAwait(false);
 
             result.AssertNoErrors();
@@ -201,7 +201,7 @@ namespace RethinkDb.Driver.Extras.Dao
         public virtual async Task DeleteByIdAsync(IdT id)
         {
             var result = await this.Table.Get(id).Delete()
-                .RunResultAsync(conn)
+                .RunWriteAsync(conn)
                 .ConfigureAwait(false);
             result.AssertDeleted(1);
         }

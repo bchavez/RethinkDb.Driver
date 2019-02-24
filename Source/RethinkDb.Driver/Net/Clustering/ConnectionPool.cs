@@ -76,6 +76,13 @@ namespace RethinkDb.Driver.Net.Clustering
             poolingStrategy.RunNoReply(term, globalOpts);
         }
 
+        Task<string> IConnection.RunResultAsRawJson(ReqlAst term, object globalOpts, CancellationToken cancelToken) {
+            if (this.shutdownSignal.IsCancellationRequested) {
+                throw new ReqlDriverError("HostPool is shutdown.");
+            }
+            return poolingStrategy.RunResultAsRawJson(term, globalOpts, cancelToken);
+        }
+
         #endregion
 
         internal ConnectionPool(Builder builder)
@@ -384,6 +391,12 @@ namespace RethinkDb.Driver.Net.Clustering
         public void Dispose()
         {
             this.Shutdown();
+        }
+
+        
+
+        void IDisposable.Dispose() {
+            throw new NotImplementedException();
         }
 
         /// <summary>

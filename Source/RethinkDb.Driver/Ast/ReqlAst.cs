@@ -143,6 +143,21 @@ namespace RethinkDb.Driver.Ast
             return Run<dynamic>(conn, runOpts);
         }
 
+        /// <summary>
+        /// Runs the query on the connection and return raw json result
+        /// </summary>
+        /// <returns>Returns Json Result as string</returns>
+        public virtual Task<string> RunAsRawJsonAsync(IConnection conn,object runOpts = null, CancellationToken cancelToken = default) {
+            return conn.RunResultAsRawJson(this, runOpts, cancelToken);
+        }
+
+        /// <summary>
+        /// Runs the query on the connection and return raw json result
+        /// </summary>
+        /// <returns>Returns Json Result as string</returns>
+        public virtual string RunAsRawJson(IConnection connection,object runOpts = null) {
+            return RunAsRawJsonAsync(connection, runOpts).Result;
+        }
         #endregion
 
         #region RESPONSE TYPED RUNNERS

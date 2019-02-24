@@ -35,6 +35,11 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// DO NOT CALL THIS METHOD EXPLICITLY. USE Run*() METHODS AT THE END OF YOUR QUERY.
         /// </summary>
+        Task<string> RunResultAsRawJson(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+
+        /// <summary>
+        /// DO NOT CALL THIS METHOD EXPLICITLY. USE Run*() METHODS AT THE END OF YOUR QUERY.
+        /// </summary>
         void RunNoReply(ReqlAst term, object globalOpts);
     }
 }

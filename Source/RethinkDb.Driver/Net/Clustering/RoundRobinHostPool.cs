@@ -120,6 +120,17 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        public override async Task<string> RunResultAsRawJson(ReqlAst term, object globalOpts, CancellationToken cancelToken) {
+            HostEntry host = GetRoundRobin();
+            try {
+                return await host.conn.RunResultAsRawJson(term, globalOpts, cancelToken).ConfigureAwait(false);
+            }
+            catch (Exception e) when (ExceptionIs.NetworkError(e)) {
+                host.MarkFailed();
+                throw;
+            }
+        }
+
         public override void RunNoReply(ReqlAst term, object globalOpts)
         {
             HostEntry host = GetRoundRobin();
@@ -133,12 +144,13 @@ namespace RethinkDb.Driver.Net.Clustering
                 throw;
             }
         }
-
         #endregion
 
         public override void Dispose()
         {
             //nothing to do i guess.
         }
+
+        
     }
 }

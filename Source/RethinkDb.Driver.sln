@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.Tests", "RethinkDb.Driver.Tests\RethinkDb.Driver.Tests.csproj", "{40037F4C-E867-462A-B3E6-AFED77582442}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver", "RethinkDb.Driver\RethinkDb.Driver.csproj", "{BF0E5A4A-4E2D-48B9-BCAA-054506396524}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RethinkDb.Driver", "RethinkDb.Driver\RethinkDb.Driver.csproj", "{BF0E5A4A-4E2D-48B9-BCAA-054506396524}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates", "Templates\Templates.csproj", "{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}"
 EndProject
@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid", "RethinkDb.Driver.ReGrid\RethinkDb.Driver.ReGrid.csproj", "{D888899B-D030-44D1-9D91-99D57201A048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RethinkDb.Driver.ReGrid", "RethinkDb.Driver.ReGrid\RethinkDb.Driver.ReGrid.csproj", "{D888899B-D030-44D1-9D91-99D57201A048}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.CLI", "RethinkDb.Driver.ReGrid.CLI\RethinkDb.Driver.ReGrid.CLI.csproj", "{E4D63A4B-F886-4C29-96FD-11022F4294A2}"
 EndProject
@@ -29,11 +29,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.Tes
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Builder", "..\Builder\Builder.fsproj", "{2E878DDF-5585-48F2-85E0-748579278C9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.Linq", "RethinkDb.Driver.Linq\RethinkDb.Driver.Linq.csproj", "{A661AC1D-B14A-4A7C-8CA8-90FD8DD4302B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RethinkDb.Driver.Linq", "RethinkDb.Driver.Linq\RethinkDb.Driver.Linq.csproj", "{A661AC1D-B14A-4A7C-8CA8-90FD8DD4302B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.Linq.Tests", "RethinkDb.Driver.Linq.Tests\RethinkDb.Driver.Linq.Tests.csproj", "{E4E391E4-BAD2-424C-ABA1-C33D438569A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "Benchmark\Benchmark.csproj", "{D37FE226-75BA-4265-8D39-7B64594C42E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{36EE9148-F5B9-487F-AD22-CCB72EF47692}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,8 +83,15 @@ Global
 		{D37FE226-75BA-4265-8D39-7B64594C42E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D37FE226-75BA-4265-8D39-7B64594C42E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D37FE226-75BA-4265-8D39-7B64594C42E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36EE9148-F5B9-487F-AD22-CCB72EF47692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EE9148-F5B9-487F-AD22-CCB72EF47692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EE9148-F5B9-487F-AD22-CCB72EF47692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EE9148-F5B9-487F-AD22-CCB72EF47692}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44BFEA53-0854-4F33-8404-93867B2CEF0B}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,8 @@
 using System;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
@@ -41,6 +43,14 @@ namespace RethinkDb.Driver.Tests.ReQL
             act.ShouldThrow<ReqlDriverError>();
         }
 
-       
+        [Test]
+        public async Task can_run_unsafe_query()
+        {
+            var r = await R.Add(1, 2).RunUnsafeAsync(conn);
+
+            r.IsError.Should().BeFalse();
+
+            r.Data[0].ToString().Should().Be("3");
+        }
     }
 }

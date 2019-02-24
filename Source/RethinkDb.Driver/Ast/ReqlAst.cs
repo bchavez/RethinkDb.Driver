@@ -351,6 +351,22 @@ namespace RethinkDb.Driver.Ast
 
 
         /// <summary>
+        /// Runs a query on the server and returns the raw <see cref="Response"/> object in an unsafe way
+        /// with minimal client-side processing. The unbridled use of this method can
+        /// lead to memory leaks on both the client and server. This method should only
+        /// be used in well-understood and advanced scenarios.
+        /// </summary>
+        /// <param name="conn">The connection object</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual Task<Response> RunUnsafeAsync(IConnection conn, object runOpts = null, CancellationToken cancelToken = default)
+        {
+            return conn.RunUnsafeAsync(this, runOpts, cancelToken);
+        }
+
+
+
+        /// <summary>
         /// Helper shortcut for change feeds, use if your query is expecting an infinite changes() stream.
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>

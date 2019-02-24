@@ -76,6 +76,15 @@ namespace RethinkDb.Driver.Net.Clustering
             poolingStrategy.RunNoReply(term, globalOpts);
         }
 
+        Task<Response> IConnection.RunUnsafeAsync(ReqlAst term, object globalOpts, CancellationToken cancelToken)
+        {
+            if (this.shutdownSignal.IsCancellationRequested)
+            {
+                throw new ReqlDriverError("HostPool is shutdown.");
+            }
+            return poolingStrategy.RunUnsafeAsync(term, globalOpts, cancelToken);
+        }
+
         #endregion
 
         internal ConnectionPool(Builder builder)

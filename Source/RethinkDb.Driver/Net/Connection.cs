@@ -514,6 +514,12 @@ namespace RethinkDb.Driver.Net
             SendQueryNoReply(Query.Start(NewToken(), term, opts));
         }
 
+        Task<Response> IConnection.RunUnsafeAsync(ReqlAst term, object globalOpts, CancellationToken cancelToken)
+        {
+            Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
+            return SendQuery(q, cancelToken, awaitResponse: true);
+        }
+
         #endregion
 
         #region CURSOR SUPPORT

@@ -75,6 +75,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public abstract Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract void RunNoReply(ReqlAst term, object globalOpts);
+        public abstract Task<Response> RunUnsafeAsync(ReqlAst term, object globalOpts, CancellationToken cancelToken);
 
         public abstract void Dispose();
     }

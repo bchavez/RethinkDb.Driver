@@ -99,25 +99,25 @@ namespace RethinkDb.Driver.Net
         }
 
 
-        internal virtual bool IsWaitComplete => this.Type == ResponseType.WAIT_COMPLETE;
+        public virtual bool IsWaitComplete => this.Type == ResponseType.WAIT_COMPLETE;
 
         /* Whether the response is any kind of feed */
 
-        internal virtual bool IsFeed => this.Notes.Any(rn => rn.IsFeed());
+        public virtual bool IsFeed => this.Notes.Any(rn => rn.IsFeed());
 
         /* Whether the response is any kind of error */
 
-        internal virtual bool IsError => this.Type.IsError();
+        public virtual bool IsError => this.Type.IsError();
 
         /* What type of success the response contains */
 
-        internal virtual bool IsAtom => this.Type == ResponseType.SUCCESS_ATOM;
+        public virtual bool IsAtom => this.Type == ResponseType.SUCCESS_ATOM;
 
-        internal virtual bool IsSequence => this.Type == ResponseType.SUCCESS_SEQUENCE;
+        public virtual bool IsSequence => this.Type == ResponseType.SUCCESS_SEQUENCE;
 
-        internal virtual bool IsPartial => this.Type == ResponseType.SUCCESS_PARTIAL;
+        public virtual bool IsPartial => this.Type == ResponseType.SUCCESS_PARTIAL;
 
-        internal virtual ReqlError MakeError(Query query)
+        public virtual ReqlError MakeError(Query query)
         {
             string msg = this.Data.Count > 0 ? (string)Data[0] : "Unknown error message";
             return new ErrorBuilder(msg, this.Type)

@@ -1,243 +1,228 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{40037F4C-E867-462A-B3E6-AFED77582442}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RethinkDb.Driver.Tests</RootNamespace>
-    <AssemblyName>RethinkDb.Driver.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>
-    </NoWarn>
-    <CodeAnalysisRuleSet />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet />
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Bogus, Version=11.0.4.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bogus.11.0.4\lib\net40\Bogus.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.3.0\lib\net40\Common.Logging.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.3.0\lib\net40\Common.Logging.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Common.Logging.NLog40, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.NLog40.3.3.0\lib\net40\Common.Logging.NLog40.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FakeItEasy, Version=3.2.0.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
-      <HintPath>..\packages\FakeItEasy.3.2.0\lib\net40\FakeItEasy.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FluentAssertions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.0.1\lib\net45\FluentAssertions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.0.1\lib\net45\FluentAssertions.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Humanizer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeCoverage.15.9.0\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NodaTime.1.3.1\lib\net35-Client\NodaTime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Core.3.0.0\lib\net45\System.Reactive.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Interfaces.3.0.0\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Linq.3.0.0\lib\net45\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.PlatformServices.3.0.0\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Windows.Threading.3.0.0\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.10.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.10\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="Dao\DaoTests.cs" />
-    <Compile Include="GitHubIssues\Issue128.cs" />
-    <Compile Include="GitHubIssues\Issue138.cs" />
-    <Compile Include="Network\AuthTest.cs" />
-    <Compile Include="Network\Benchmark.cs" />
-    <Compile Include="Network\ConnectionPoolTests.cs" />
-    <Compile Include="Network\ConnectionTest.cs" />
-    <Compile Include="QueryTestFixture.cs" />
-    <Compile Include="ReqlRawTests.cs" />
-    <Compile Include="ReQL\AsyncAwaitTests.cs" />
-    <Compile Include="ReQL\ChangeFeedTests.cs" />
-    <Compile Include="ReQL\DateAndTimeTests.cs" />
-    <Compile Include="ReQL\Examples.cs" />
-    <Compile Include="ReQL\ExperimentalTests.cs" />
-    <Compile Include="ReQL\GitHubIssues.cs" />
-    <Compile Include="ReQL\GroupingTests.cs" />
-    <Compile Include="ReQL\JObjectTests.cs" />
-    <Compile Include="ReQL\MapTests.cs" />
-    <Compile Include="ReQL\OtherTests.cs" />
-    <Compile Include="ReQL\PocoTests.cs" />
-    <Compile Include="ReQL\BinaryTests.cs" />
-    <Compile Include="ReQL\RawJsonResultTest.cs" />
-    <Compile Include="ReQL\RunHelperTests.cs" />
-    <Compile Include="ReQL\RxReactiveExtensionTests.cs" />
-    <Compile Include="ReQL\SlackIssues.cs" />
-    <Compile Include="ReQL\StackOverflowQuestions.cs" />
-    <Compile Include="TestLogContext.cs" />
-    <Compile Include="Utils\ExtensionsForTesting.cs" />
-    <Compile Include="Generated\ChangefeedsIncludeStates.cs" />
-    <Compile Include="Generated\ChangefeedsSindex.cs" />
-    <Compile Include="Generated\ChangefeedsTable.cs" />
-    <Compile Include="Generated\DatumArray.cs" />
-    <Compile Include="Generated\DatumBinary.cs" />
-    <Compile Include="Generated\DatumBool.cs" />
-    <Compile Include="Generated\DatumNull.cs" />
-    <Compile Include="Generated\DatumNumber.cs" />
-    <Compile Include="Generated\DatumObject.cs" />
-    <Compile Include="Generated\DatumString.cs" />
-    <Compile Include="Generated\DatumTypeof.cs" />
-    <Compile Include="Generated\DatumUuid.cs" />
-    <Compile Include="Generated\Default.cs" />
-    <Compile Include="Generated\GeoConstructors.cs" />
-    <Compile Include="Generated\GeoGeojson.cs" />
-    <Compile Include="Generated\GeoIntersectionInclusion.cs" />
-    <Compile Include="Generated\GeoOperations.cs" />
-    <Compile Include="Generated\GeoPrimitives.cs" />
-    <Compile Include="Generated\Json.cs" />
-    <Compile Include="Generated\Match.cs" />
-    <Compile Include="Generated\MathLogicAdd.cs" />
-    <Compile Include="Generated\MathLogicAliases.cs" />
-    <Compile Include="Generated\MathLogicDiv.cs" />
-    <Compile Include="Generated\MathLogicFloorCeilRound.cs" />
-    <Compile Include="Generated\MathLogicLogic.cs" />
-    <Compile Include="Generated\MathLogicMath.cs" />
-    <Compile Include="Generated\MathLogicMod.cs" />
-    <Compile Include="Generated\MathLogicMul.cs" />
-    <Compile Include="Generated\MathLogicSub.cs" />
-    <Compile Include="Generated\MetaDbs.cs" />
-    <Compile Include="Generated\MetaTable.cs" />
-    <Compile Include="Generated\MutationAtomicGetSet.cs" />
-    <Compile Include="Generated\MutationDelete.cs" />
-    <Compile Include="Generated\MutationInsert.cs" />
-    <Compile Include="Generated\MutationSync.cs" />
-    <Compile Include="Generated\Polymorphism.cs" />
-    <Compile Include="Generated\Random.cs" />
-    <Compile Include="Generated\Range.cs" />
-    <Compile Include="Generated\SindexNullsinstrings.cs" />
-    <Compile Include="Generated\Timeout.cs" />
-    <Compile Include="Generated\TimesApi.cs" />
-    <Compile Include="Generated\TimesConstructors.cs" />
-    <Compile Include="Generated\TimesIndex.cs" />
-    <Compile Include="Generated\TimesShim.cs" />
-    <Compile Include="Generated\TimesTimeArith.cs" />
-    <Compile Include="Generated\TimesTimezones.cs" />
-    <Compile Include="Generated\TransformArray.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestDebugger.cs" />
-    <Compile Include="TestingCommon.cs" />
-    <Compile Include="YamlTestContext.cs" />
-    <Compile Include="YamlTestFixture.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RethinkDb.Driver\RethinkDb.Driver.csproj">
-      <Project>{bf0e5a4a-4e2d-48b9-bcaa-054506396524}</Project>
-      <Name>RethinkDb.Driver</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{40037F4C-E867-462A-B3E6-AFED77582442}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>RethinkDb.Driver.Tests</RootNamespace>
+        <AssemblyName>RethinkDb.Driver.Tests</AssemblyName>
+        <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <TargetFrameworkProfile />
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.targets'))" />
-  </Target>
-  <Import Project="..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.15.9.0\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <NoWarn>
+        </NoWarn>
+        <CodeAnalysisRuleSet />
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <CodeAnalysisRuleSet />
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Bogus, Version=11.0.4.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+            <HintPath>..\packages\Bogus.11.0.4\lib\net40\Bogus.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+            <HintPath>..\packages\Common.Logging.3.3.0\lib\net40\Common.Logging.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Common.Logging.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+            <HintPath>..\packages\Common.Logging.Core.3.3.0\lib\net40\Common.Logging.Core.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Common.Logging.NLog40, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+            <HintPath>..\packages\Common.Logging.NLog40.3.3.0\lib\net40\Common.Logging.NLog40.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="FakeItEasy, Version=3.2.0.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+            <HintPath>..\packages\FakeItEasy.3.2.0\lib\net40\FakeItEasy.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="FluentAssertions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+            <HintPath>..\packages\FluentAssertions.4.0.1\lib\net45\FluentAssertions.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="FluentAssertions.Core, Version=4.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+            <HintPath>..\packages\FluentAssertions.4.0.1\lib\net45\FluentAssertions.Core.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Humanizer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+            <HintPath>..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+            <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+            <HintPath>..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+            <HintPath>..\packages\NodaTime.1.3.1\lib\net35-Client\NodaTime.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+            <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Configuration" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Reactive.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+            <HintPath>..\packages\System.Reactive.Core.3.0.0\lib\net45\System.Reactive.Core.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Reactive.Interfaces, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+            <HintPath>..\packages\System.Reactive.Interfaces.3.0.0\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Reactive.Linq, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+            <HintPath>..\packages\System.Reactive.Linq.3.0.0\lib\net45\System.Reactive.Linq.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Reactive.PlatformServices, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+            <HintPath>..\packages\System.Reactive.PlatformServices.3.0.0\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Reactive.Windows.Threading, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+            <HintPath>..\packages\System.Reactive.Windows.Threading.3.0.0\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Net.Http" />
+        <Reference Include="System.Xml" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.10.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+            <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.10\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="AppSettings.cs" />
+        <Compile Include="Dao\DaoTests.cs" />
+        <Compile Include="GitHubIssues\Issue128.cs" />
+        <Compile Include="GitHubIssues\Issue138.cs" />
+        <Compile Include="Network\AuthTest.cs" />
+        <Compile Include="Network\Benchmark.cs" />
+        <Compile Include="Network\ConnectionPoolTests.cs" />
+        <Compile Include="Network\ConnectionTest.cs" />
+        <Compile Include="QueryTestFixture.cs" />
+        <Compile Include="ReqlRawTests.cs" />
+        <Compile Include="ReQL\AsyncAwaitTests.cs" />
+        <Compile Include="ReQL\ChangeFeedTests.cs" />
+        <Compile Include="ReQL\DateAndTimeTests.cs" />
+        <Compile Include="ReQL\Examples.cs" />
+        <Compile Include="ReQL\ExperimentalTests.cs" />
+        <Compile Include="ReQL\GitHubIssues.cs" />
+        <Compile Include="ReQL\GroupingTests.cs" />
+        <Compile Include="ReQL\JObjectTests.cs" />
+        <Compile Include="ReQL\MapTests.cs" />
+        <Compile Include="ReQL\OtherTests.cs" />
+        <Compile Include="ReQL\PocoTests.cs" />
+        <Compile Include="ReQL\BinaryTests.cs" />
+        <Compile Include="ReQL\RunHelperTests.cs" />
+        <Compile Include="ReQL\RxReactiveExtensionTests.cs" />
+        <Compile Include="ReQL\SlackIssues.cs" />
+        <Compile Include="ReQL\StackOverflowQuestions.cs" />
+        <Compile Include="TestLogContext.cs" />
+        <Compile Include="Utils\ExtensionsForTesting.cs" />
+        <Compile Include="Generated\ChangefeedsIncludeStates.cs" />
+        <Compile Include="Generated\ChangefeedsSindex.cs" />
+        <Compile Include="Generated\ChangefeedsTable.cs" />
+        <Compile Include="Generated\DatumArray.cs" />
+        <Compile Include="Generated\DatumBinary.cs" />
+        <Compile Include="Generated\DatumBool.cs" />
+        <Compile Include="Generated\DatumNull.cs" />
+        <Compile Include="Generated\DatumNumber.cs" />
+        <Compile Include="Generated\DatumObject.cs" />
+        <Compile Include="Generated\DatumString.cs" />
+        <Compile Include="Generated\DatumTypeof.cs" />
+        <Compile Include="Generated\DatumUuid.cs" />
+        <Compile Include="Generated\Default.cs" />
+        <Compile Include="Generated\GeoConstructors.cs" />
+        <Compile Include="Generated\GeoGeojson.cs" />
+        <Compile Include="Generated\GeoIntersectionInclusion.cs" />
+        <Compile Include="Generated\GeoOperations.cs" />
+        <Compile Include="Generated\GeoPrimitives.cs" />
+        <Compile Include="Generated\Json.cs" />
+        <Compile Include="Generated\Match.cs" />
+        <Compile Include="Generated\MathLogicAdd.cs" />
+        <Compile Include="Generated\MathLogicAliases.cs" />
+        <Compile Include="Generated\MathLogicDiv.cs" />
+        <Compile Include="Generated\MathLogicFloorCeilRound.cs" />
+        <Compile Include="Generated\MathLogicLogic.cs" />
+        <Compile Include="Generated\MathLogicMath.cs" />
+        <Compile Include="Generated\MathLogicMod.cs" />
+        <Compile Include="Generated\MathLogicMul.cs" />
+        <Compile Include="Generated\MathLogicSub.cs" />
+        <Compile Include="Generated\MetaDbs.cs" />
+        <Compile Include="Generated\MetaTable.cs" />
+        <Compile Include="Generated\MutationAtomicGetSet.cs" />
+        <Compile Include="Generated\MutationDelete.cs" />
+        <Compile Include="Generated\MutationInsert.cs" />
+        <Compile Include="Generated\MutationSync.cs" />
+        <Compile Include="Generated\Polymorphism.cs" />
+        <Compile Include="Generated\Random.cs" />
+        <Compile Include="Generated\Range.cs" />
+        <Compile Include="Generated\SindexNullsinstrings.cs" />
+        <Compile Include="Generated\Timeout.cs" />
+        <Compile Include="Generated\TimesApi.cs" />
+        <Compile Include="Generated\TimesConstructors.cs" />
+        <Compile Include="Generated\TimesIndex.cs" />
+        <Compile Include="Generated\TimesShim.cs" />
+        <Compile Include="Generated\TimesTimeArith.cs" />
+        <Compile Include="Generated\TimesTimezones.cs" />
+        <Compile Include="Generated\TransformArray.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="TestDebugger.cs" />
+        <Compile Include="TestingCommon.cs" />
+        <Compile Include="YamlTestContext.cs" />
+        <Compile Include="YamlTestFixture.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <SubType>Designer</SubType>
+        </None>
+        <Content Include="NLog.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <SubType>Designer</SubType>
+        </Content>
+        <None Include="NLog.xsd">
+            <SubType>Designer</SubType>
+        </None>
+        <None Include="packages.config">
+            <SubType>Designer</SubType>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\RethinkDb.Driver\RethinkDb.Driver.csproj">
+            <Project>{bf0e5a4a-4e2d-48b9-bcaa-054506396524}</Project>
+            <Name>RethinkDb.Driver</Name>
+        </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

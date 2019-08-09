@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using NUnit.Framework.Compatibility;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Net.Clustering;
 using RethinkDb.Driver.Tests.Utils;
@@ -69,6 +70,43 @@ namespace RethinkDb.Driver.Tests.Network
                 .Connect();
 
             act.ShouldThrow<ReqlDriverError>();
+        }
+
+        [Test]
+        public async Task no_connection_to_a_pool_with_timeout_throws_async()
+        {
+            const int Timeout = 2;
+            Func<Task<ConnectionPool>> func = async () =>
+                await R.ConnectionPool()
+                    .PoolingStrategy(new RoundRobinHostPool())
+                    .Seed("127.0.0.2:2801")
+                    .InitialTimeout(Timeout)
+                    .ConnectAsync();
+
+            var sw = Stopwatch.StartNew();
+            func.ShouldThrow<ReqlDriverError>();
+            sw.Stop();
+
+            sw.Elapsed.Should().BeCloseTo(TimeSpan.FromSeconds(Timeout), 700);
+        }
+
+        [Test]
+        public async Task no_connection_to_a_pool_with_canceltoken_stops_async()
+        {
+            var cts = new CancellationTokenSource();
+            Func<Task<ConnectionPool>> func = async () =>
+                await R.ConnectionPool()
+                    .PoolingStrategy(new RoundRobinHostPool())
+                    .Seed("127.0.0.2:2801")
+                    .ConnectAsync(cts.Token);
+
+            const int CancellationDelay = 1200;
+            var sw = Stopwatch.StartNew();
+            cts.CancelAfter(CancellationDelay);
+            func.ShouldThrow<ReqlDriverError>();
+            sw.Stop();
+
+            sw.Elapsed.Should().BeCloseTo(TimeSpan.FromMilliseconds(CancellationDelay), 700);
         }
 
         [Test]

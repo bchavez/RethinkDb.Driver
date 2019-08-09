@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.ExceptionServices;
+using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Net;
 
@@ -50,5 +51,22 @@ namespace RethinkDb.Driver.Utils
         public static Task<bool> CompletedTaskTrue { get; }
         public static Task<bool> CompletedTaskFalse { get; }
         public static Task<Response> CompletedResponse { get; }
+
+        //Loosely based on: https://stackoverflow.com/a/22078975/9275
+        public static async Task<bool> WaitOrTimeout<TResult>(this Task<TResult> task, TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            var completedTask = await Task.WhenAny(task, Task.Delay(timeout, cancellationToken))
+                .ConfigureAwait(false);
+
+            if (completedTask == task)
+            {
+                await task;  // Very important in order to propagate exceptions
+                return true;
+            }
+
+            return false;
+        }
     }
+
+
 }

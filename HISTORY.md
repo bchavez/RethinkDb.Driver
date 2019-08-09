@@ -1,3 +1,6 @@
+## v2.3.101
+* Issue #143 - `ConnectionPool.Builder.ConnectAsync()` now respects `.InitialTimeout()` parameter. `CancellationToken` also supported.
+
 ## v2.3.100
 * First batch of expired commercial licenses have been banned for use.
 * Issue #139 - New `.RunUnsafeAsync` run helper that runs a query on the server and returns the raw `Response` object in an unsafe way with minimal client-side processing. The unbridled use of this method can lead to memory leaks on both the client and server. Use with extreme caution. This method should only be used in well-understood and advanced scenarios.

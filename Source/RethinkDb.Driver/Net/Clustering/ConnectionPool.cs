@@ -546,11 +546,23 @@ namespace RethinkDb.Driver.Net.Clustering
             /// Asynchronously creates and establishes the connection pool using the specified settings.
             /// </summary>
             /// <returns>The returned connect pool is ready to be used. At least one host will be ready to accept a query.</returns>
-            public virtual Task<ConnectionPool> ConnectAsync()
+            public virtual async Task<ConnectionPool> ConnectAsync(CancellationToken cancellationToken = default)
             {
                 var conn = new ConnectionPool(this);
                 conn.StartPool();
-                return conn.poolReady.Task;
+
+                var timeout = initialTimeout ?? TimeSpan.FromMilliseconds(-1);
+
+                var taskCompleted = await conn.poolReady.Task.WaitOrTimeout(timeout, cancellationToken)
+                    .ConfigureAwait(false);
+
+                if (!taskCompleted)
+                {
+                    conn.Shutdown();
+                    throw new ReqlDriverError("Connection timed out.");
+                }
+
+                return conn;
             }
 
 

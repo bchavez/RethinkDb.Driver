@@ -246,15 +246,15 @@ Music Wall
 <td>
     <a href=
     "http://www.youtube.com/watch?feature=player_embedded&v=1lyu1KKwC74"
-    target="_blank"><img alt="Summer Time" border="10" height="180"
+    target="_blank"><img alt="The Verve" border="10" height="180"
     src="http://img.youtube.com/vi/1lyu1KKwC74/0.jpg" width=
     "240"></a>
 </td>
 <td>
     <a href=
-    "http://www.youtube.com/watch?feature=player_embedded&v=XmSdTa9kaiQ"
-    target="_blank"><img alt="U2" border="10" height="180" src=
-    "http://img.youtube.com/vi/XmSdTa9kaiQ/0.jpg" width="240"></a>
+    "http://www.youtube.com/watch?feature=player_embedded&v=DHAMh2-cviA"
+    target="_blank"><img alt="Missing Persons" border="10" height="180" src=
+    "http://img.youtube.com/vi/DHAMh2-cviA/0.jpg" width="240"></a>
 </td>
 <td>
     <a href=

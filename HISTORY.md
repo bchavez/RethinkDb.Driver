@@ -1,3 +1,6 @@
+## v2.3.150
+* Issue #146 - Better support for `CancellationToken`. Clean up of token registrations that may produce exceptions when `CancellationTokenSource.Cancel()` is called.
+
 ## v2.3.101
 * Issue #143 - `ConnectionPool.Builder.ConnectAsync()` now respects `.InitialTimeout()` parameter. `CancellationToken` also supported.
 

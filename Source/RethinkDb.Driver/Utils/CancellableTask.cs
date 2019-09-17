@@ -21,17 +21,18 @@ namespace RethinkDb.Driver.Utils
 
         private void OnCancellation()
         {
-            this.SetCanceled();
-        }
+            this.TrySetCanceled();
 
-        private bool disposed = false;
+            //if the user successfully signaled they want to 
+            //cancel, remove the registration because
+            //the task status = canceled has been set.
+            //don't need the registration any more.
+            this.Dispose();
+        }
 
         public void Dispose()
         {
-            if( !disposed )
-            {
-                this.registration.Dispose();
-            }
+            this.registration.Dispose();
         }
     }
 }

@@ -233,11 +233,17 @@ namespace RethinkDb.Driver.Net
                     {
                         Task.Run(() =>
                             {
-                                //try, because it's possible
-                                //the awaiting task was canceled.
-                                if( !awaitingTask.TrySetResult(response) )
+                                //regardless of the outcome, clean up any registered
+                                //cancellation tokens with using statement.
+                                using ( awaitingTask )
                                 {
-                                    Log.Debug($"Response Pump: The awaiter waiting for response token {response.Token} could not be set. The task was probably canceled.");
+                                    //try setting the result, because it's possible
+                                    //the awaiting task was canceled.
+                                    if( !awaitingTask.TrySetResult(response) )
+                                    {
+                                        Log.Debug(
+                                            $"Response Pump: The awaiter waiting for response token {response.Token} could not be set. The task was probably canceled.");
+                                    }
                                 }
                             });
                     }

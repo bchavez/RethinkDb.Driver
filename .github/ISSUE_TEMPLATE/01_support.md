@@ -10,7 +10,7 @@ Submitting issues to this repository are reserved for bugs, feature requests, or
 
 We have great community help channels to ask for help:
 
-* Discord Server 1(https://discord.gg/ZeEq5TE)
-* Gitter.im (https://gitter.im/bchavez/RethinkDb.Driver)
+* Slack (https://tinyurl.com/rethinkdb-slack)
+* Discord Server (https://discord.gg/ZeEq5TE)
  
 If nobody can answer your C# related question, tag @bchavez in your question. 

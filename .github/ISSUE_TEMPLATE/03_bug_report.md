@@ -20,16 +20,16 @@ about: If something isn't working 🔧
 
 ### What is the actual behavior?
 
-### What do the JSON protocol traces and log files look like?
+### Please provide a unit test that demonstrates the bug.
+
+### Other notes on how to reproduce the issue?
+
+### Please provide JSON protocol traces and log files.
 
 Enable driver logging and JSON protocol traces here:
 * https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging
 
 ### Any possible solutions?
-
-### How do you reproduce the issue?
-
-### Do you have a unit test that can demonstrate the bug?
 
 ### Can you identify the location in the driver source code where the problem exists?
 

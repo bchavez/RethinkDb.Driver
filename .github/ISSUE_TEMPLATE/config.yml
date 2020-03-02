@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ❓ Help and Support Slack Channel
+    url: https://tinyurl.com/rethinkdb-slack
+    about: Please ask and answer questions here. 🏥
+  - name: ❓ Help and Support Discord Channel
+    url: https://discord.gg/ZeEq5TE
+    about: Please ask and answer questions here. 🏥

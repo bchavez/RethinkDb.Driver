@@ -34,6 +34,8 @@ test_script:
 artifacts:
     - path: __package\*.nupkg
       name: NuGet
+    - path: __package\*.snupkg
+      name: Symbols
     - path: __package\*.zip
       name: Zip
 
@@ -50,7 +52,7 @@ deploy:
       tag: $(APPVEYOR_REPO_TAG_NAME)
       description: '[**CHANGE LOG**](https://github.com/bchavez/RethinkDb.Driver/blob/master/HISTORY.md)'
       prerelease: $(IsPreRelease)
-      artifact: Zip, NuGet
+      artifact: Zip, NuGet, Symbols
       auth_token:
           secure: cyivrWQwrZNAb6UCNXlIQlGfVSnKIC6TatUOIP95CQgMeKGnmBSqBgAFv2TsRZhR
       on:
@@ -59,9 +61,12 @@ deploy:
           appveyor_repo_tag: true
 
     - provider: NuGet
+      server:
+      symbol_server:
+      skip_symbols: false
       api_key:
           secure: 1nPS2ttf+N4+FUhd+GZycrL7YzSWQpZjnGOMCb5+pGJXSdx0IFvVF8xhTGna7B9t
-      artifact: NuGet
+      artifact: NuGet, Symbols
       on:
           branch: master
           appveyor_repo_tag_name: /v\d+\.\d+\.\d+/

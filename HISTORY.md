@@ -1,3 +1,8 @@
+## v2.4.0-beta-1
+* Add support for RethinkDB 2.4.
+* Add support for write hooks.
+* Add support for bit-wise operators.
+
 ## v2.3.150
 * Issue #146 - Better support for `CancellationToken`. Clean up of token registrations that may produce exceptions when `CancellationTokenSource.Cancel()` is called.
 

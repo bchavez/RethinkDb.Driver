@@ -16,7 +16,9 @@ init:
             Else{
               Set-AppveyorBuildVariable -Name "IsPreRelease" -Value False
             }
-#install:
+install:
+   # needed for rethinkdb-java submodule
+   - git submodule update --init --recursive
 #- ps: Start-FileDownload 'https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/Latest/dotnet-dev-win-x64.latest.exe'
 #- cmd: dotnet-dev-win-x64.latest.exe /quiet
             

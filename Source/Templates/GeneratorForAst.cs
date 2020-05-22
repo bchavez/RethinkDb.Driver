@@ -27,7 +27,8 @@ namespace Templates
 
         public void SetPaths(string driverFolder)
         {
-            MetaDb.Initialize(Path.Combine(driverFolder, @"..\Templates\Metadata"));
+            MetaDb.Initialize(Path.Combine(driverFolder, @"..\rethinkdb-java\scripts"));
+            MetaDb.ReadDocMeta(Path.Combine(driverFolder, @"..\Templates\Metadata"));
 
             this.ProjectFolder = Path.GetFullPath(driverFolder);
             this.GenerateRootDir = Path.GetFullPath(Path.Combine(driverFolder, GenerateRootDir));

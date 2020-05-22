@@ -106,6 +106,8 @@ namespace RethinkDb.Driver.Proto {
         INDEX_STATUS = 139,
         INDEX_WAIT = 140,
         INDEX_RENAME = 156,
+        SET_WRITE_HOOK = 189,
+        GET_WRITE_HOOK = 190,
         FUNCALL = 64,
         BRANCH = 65,
         OR = 66,
@@ -121,7 +123,6 @@ namespace RethinkDb.Driver.Proto {
         SAMPLE = 81,
         DEFAULT = 92,
         JSON = 98,
-        TO_JSON_STRING = 172,
         ISO8601 = 99,
         TO_ISO8601 = 100,
         EPOCH_TIME = 101,
@@ -185,8 +186,15 @@ namespace RethinkDb.Driver.Proto {
         FILL = 167,
         GET_NEAREST = 168,
         POLYGON_SUB = 171,
+        TO_JSON_STRING = 172,
         MINVAL = 180,
         MAXVAL = 181,
+        BIT_AND = 191,
+        BIT_OR = 192,
+        BIT_XOR = 193,
+        BIT_NOT = 194,
+        BIT_SAL = 195,
+        BIT_SAR = 196,
     }
 
     

@@ -561,6 +561,35 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return GetNearest ( expr );
                         }
+                        public SetWriteHook SetWriteHook ( Javascript js )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(js);
+                            return new SetWriteHook (arguments );
+                        }
+                        internal SetWriteHook setWriteHook ( Javascript js )
+                        {
+                           return SetWriteHook ( js );
+                        }
+                        public SetWriteHook SetWriteHook ( ReqlFunction3 func3 )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(func3);
+                            return new SetWriteHook (arguments );
+                        }
+                        internal SetWriteHook setWriteHook ( ReqlFunction3 func3 )
+                        {
+                           return SetWriteHook ( func3 );
+                        }
+                        public GetWriteHook GetWriteHook (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new GetWriteHook (arguments );
+                        }
+                        internal GetWriteHook getWriteHook (  )
+                        {
+                           return GetWriteHook (  );
+                        }
 
     
     }

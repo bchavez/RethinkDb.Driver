@@ -208,9 +208,6 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>MakeObj.generated.cs</LastGenOutput>
     </None>
-    <None Include="Metadata\global_info.json" />
-    <None Include="Metadata\java_term_info.json" />
-    <None Include="Metadata\proto_basic.json" />
     <None Include="CodeGen\EnumTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>EnumTemplate.generated.cs</LastGenOutput>

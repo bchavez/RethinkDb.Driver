@@ -18,11 +18,9 @@ namespace Templates.Metadata
             Protocol = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "proto_basic.json")));
             Global = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "global_info.json")));
             JavaTermInfo = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "java_term_info.json")));
-
-            ReadDocMeta(pathToJson);
         }
 
-        internal static void ReadDocMeta(string pathToJson)
+        public static void ReadDocMeta(string pathToJson)
         {
             var json = File.ReadAllText(Path.Combine(pathToJson, "reql_docs.js"));
             json = json.Substring(json.IndexOf("reql_docs = ") + 12);

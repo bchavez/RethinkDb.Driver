@@ -256,6 +256,65 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return Mod ( exprA );
                         }
+                        public BitAnd BitAnd ( params object[] exprs )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAddAll(exprs);
+                            return new BitAnd (arguments );
+                        }
+                        internal BitAnd bitAnd ( params object[] exprs )
+                        {
+                           return BitAnd ( exprs );
+                        }
+                        public BitOr BitOr ( params object[] exprs )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAddAll(exprs);
+                            return new BitOr (arguments );
+                        }
+                        internal BitOr bitOr ( params object[] exprs )
+                        {
+                           return BitOr ( exprs );
+                        }
+                        public BitXor BitXor ( params object[] exprs )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAddAll(exprs);
+                            return new BitXor (arguments );
+                        }
+                        internal BitXor bitXor ( params object[] exprs )
+                        {
+                           return BitXor ( exprs );
+                        }
+                        public BitNot BitNot (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new BitNot (arguments );
+                        }
+                        internal BitNot bitNot (  )
+                        {
+                           return BitNot (  );
+                        }
+                        public BitSal BitSal ( Object exprA )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(exprA);
+                            return new BitSal (arguments );
+                        }
+                        internal BitSal bitSal ( Object exprA )
+                        {
+                           return BitSal ( exprA );
+                        }
+                        public BitSar BitSar ( Object exprA )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(exprA);
+                            return new BitSar (arguments );
+                        }
+                        internal BitSar bitSar ( Object exprA )
+                        {
+                           return BitSar ( exprA );
+                        }
 /// <summary>
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>

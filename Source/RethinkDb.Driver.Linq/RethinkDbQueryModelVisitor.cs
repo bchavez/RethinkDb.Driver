@@ -11,6 +11,7 @@ using Remotion.Linq.Clauses.ResultOperators;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.Attributes;
 using RethinkDb.Driver.Linq.WhereClauseParsers;
+using RethinkDb.Driver.Linq.WhereClauseVisitors;
 using ExpressionVisitor = RethinkDb.Driver.Linq.WhereClauseParsers.ExpressionVisitor;
 using RethinkDb.Driver.Utils;
 
@@ -51,23 +52,17 @@ namespace RethinkDb.Driver.Linq
         {
             var expressions = SplitWhereClause( whereClause.Predicate );
 
-            foreach( var expression in expressions.ToList() )
+            var visitors = new IWhereClauseVisitor[]
             {
-                var whereClauseParsers = new List<IWhereClauseParser>
-                {
-                    new GroupItemsParser(),
-                    new PrimaryIndexParser(),
-                    new SecondaryIndexParser(),
-                    new DefaultParser()
-                };
+                new BetweenWhereClauseVisitor(),
+                new DefaultWhereClauseVisitor()
+            };
 
-                var reql = Stack.Pop();
-                var matchingParser = whereClauseParsers.FirstOrDefault( x => x.IsAppropriate( reql, expression, queryModel.ResultTypeOverride ) );
-                if( matchingParser != null )
-                    Stack.Push( matchingParser.Parse( reql, queryModel, expression ) );
-                else
-                    throw new NotSupportedException( "Unable to vist Where clause" );
-            }
+            foreach ( var visitor in visitors )
+                expressions = visitor.Visit( expressions, queryModel, Stack );
+
+            if ( expressions.Any() )
+                throw new NotSupportedException( "Unable to visit Where clause" );
         }
 
         private static IEnumerable<Expression> SplitWhereClause( Expression predicate )

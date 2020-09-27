@@ -308,15 +308,262 @@ namespace RethinkDb.Driver.Linq.Tests
             Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
+        [Test]
+        public void WhenFilterIsLessThanAndMoreThanOnIndexedColumn_UsesIndex()
+        {
+            var data = new List<TestObject>
+            {
+                new TestObject
+                {
+                    Name = "TestObject1",
+                    Score = 1
+                },
+                new TestObject
+                {
+                    Name = "TestObject2",
+                    Score = 2
+                },
+                new TestObject
+                {
+                    Name = "TestObject3",
+                    Score = 3
+                },
+                new TestObject
+                {
+                    Name = "TestObject4",
+                    Score = 4
+                }
+            };
 
-        
+            SpawnData( data );
 
-        
+            var expected = RethinkDB.R.Table( TableName )
+                .Between( 1, 4 ).OptArg( "index", "Score" ).OptArg( "left_bound", "open" );
 
-        
+            var queryable = GetQueryable<TestObject>( TableName, expected );
+
+            var result = queryable
+                .Where( x => x.Score < 4 && x.Score > 1 )
+                .ToList();
+
+            var expectedNames = new[]
+            {
+                "TestObject2",
+                "TestObject3"
+            };
+            Assert.AreEqual( 2, result.Count );
+            Assert.IsTrue( expectedNames.All( n => result.Any( x => x.Name == n ) ) );
+        }
+
+        [Test]
+        public void WhenFilterIsLessThanAndMoreThanOrEqualToOnIndexedColumn_UsesIndex()
+        {
+            var data = new List<TestObject>
+            {
+                new TestObject
+                {
+                    Name = "TestObject1",
+                    Score = 1
+                },
+                new TestObject
+                {
+                    Name = "TestObject2",
+                    Score = 2
+                },
+                new TestObject
+                {
+                    Name = "TestObject3",
+                    Score = 3
+                },
+                new TestObject
+                {
+                    Name = "TestObject4",
+                    Score = 4
+                }
+            };
+
+            SpawnData( data );
+
+            var expected = RethinkDB.R.Table( TableName )
+                .Between( 1, 4 ).OptArg( "index", "Score" );
+
+            var queryable = GetQueryable<TestObject>( TableName, expected );
+
+            var result = queryable
+                .Where( x => x.Score < 4 && x.Score >= 1 )
+                .ToList();
 
 
-        
+            var expectedNames = new[]
+            {
+                "TestObject1",
+                "TestObject2",
+                "TestObject3"
+            };
+            Assert.AreEqual( 3, result.Count );
+            Assert.IsTrue( expectedNames.All( n => result.Any( x => x.Name == n ) ) );
+        }
+
+        [Test]
+        public void WhenFilterIsLessThanOrEqualToAndMoreThanOnIndexedColumn_UsesIndex()
+        {
+            var data = new List<TestObject>
+            {
+                new TestObject
+                {
+                    Name = "TestObject1",
+                    Score = 1
+                },
+                new TestObject
+                {
+                    Name = "TestObject2",
+                    Score = 2
+                },
+                new TestObject
+                {
+                    Name = "TestObject3",
+                    Score = 3
+                },
+                new TestObject
+                {
+                    Name = "TestObject4",
+                    Score = 4
+                }
+            };
+
+            SpawnData( data );
+
+            var expected = RethinkDB.R.Table( TableName )
+                .Between( 1, 4 )
+                .OptArg( "index", "Score" )
+                .OptArg( "left_bound", "open" )
+                .OptArg( "right_bound", "closed" );
+
+            var queryable = GetQueryable<TestObject>( TableName, expected );
+
+            var result = queryable
+                .Where( x => x.Score <= 4 && x.Score > 1 )
+                .ToList();
+
+            var expectedNames = new[]
+            {
+                "TestObject2",
+                "TestObject3",
+                "TestObject4"
+            };
+            Assert.AreEqual( 3, result.Count );
+            Assert.IsTrue( expectedNames.All( n => result.Any( x => x.Name == n ) ) );
+        }
+
+        [Test]
+        public void WhenFilterIsLessThanOrEqualToAndMoreThanOrEqualToOnIndexedColumn_UsesIndex()
+        {
+            var data = new List<TestObject>
+            {
+                new TestObject
+                {
+                    Name = "TestObject1",
+                    Score = 1
+                },
+                new TestObject
+                {
+                    Name = "TestObject2",
+                    Score = 2
+                },
+                new TestObject
+                {
+                    Name = "TestObject3",
+                    Score = 3
+                },
+                new TestObject
+                {
+                    Name = "TestObject4",
+                    Score = 4
+                }
+            };
+
+            SpawnData( data );
+
+            var expected = RethinkDB.R.Table( TableName )
+                .Between( 1, 4 )
+                .OptArg( "index", "Score" )
+                .OptArg( "right_bound", "closed" );
+
+            var queryable = GetQueryable<TestObject>( TableName, expected );
+
+            var result = queryable
+                .Where( x => x.Score <= 4 && x.Score >= 1 )
+                .ToList();
+
+            var expectedNames = new[]
+            {
+                "TestObject1",
+                "TestObject2",
+                "TestObject3",
+                "TestObject4"
+            };
+            Assert.AreEqual( 4, result.Count );
+            Assert.IsTrue( expectedNames.All( n => result.Any( x => x.Name == n ) ) );
+        }
+
+        [Test]
+        public void WhenFilterIsLessThanOrMoreThanOnIndexedColumn_DoesNotUseIndex()
+        {
+            var data = new List<TestObject>
+            {
+                new TestObject
+                {
+                    Name = "TestObject1",
+                    Score = 1
+                },
+                new TestObject
+                {
+                    Name = "TestObject2",
+                    Score = 2
+                },
+                new TestObject
+                {
+                    Name = "TestObject3",
+                    Score = 3
+                },
+                new TestObject
+                {
+                    Name = "TestObject4",
+                    Score = 4
+                }
+            };
+
+            SpawnData( data );
+
+            var expected = RethinkDB.R.Table( TableName )
+                .Filter( x => x["Score"].Lt( 4 ).Or( x["Score"].Gt( 1 ) ) );
+
+            var queryable = GetQueryable<TestObject>( TableName, expected );
+
+            var result = queryable
+                .Where( x => x.Score < 4 || x.Score > 1 )
+                .ToList();
+
+            var expectedNames = new[]
+            {
+                "TestObject1",
+                "TestObject2",
+                "TestObject3",
+                "TestObject4"
+            };
+            Assert.AreEqual( 4, result.Count );
+            Assert.IsTrue( expectedNames.All( n => result.Any( x => x.Name == n ) ) );
+        }
+
+
+
+
+
+
+
+
+
+
 
 
         public class TestObject
@@ -334,6 +581,8 @@ namespace RethinkDb.Driver.Linq.Tests
 
             [SecondaryIndex]
             public string Location { get; set; }
+            [SecondaryIndex]
+            public int Score { get; set; }
 
             public List<string> Locations { get; set; }
             public List<Resource> Resources { get; set; }

@@ -3,10 +3,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using Remotion.Linq;
 using RethinkDb.Driver.Ast;
+using RethinkDb.Driver.Linq.Helpers;
 
 namespace RethinkDb.Driver.Linq.WhereClauseParsers
 {
     public abstract class BaseIndexParser<T> : IWhereClauseParser
+        where T : Attribute
     {
         public bool IsAppropriate( ReqlAst reql, Expression expression, Type resultType )
         {
@@ -26,15 +28,14 @@ namespace RethinkDb.Driver.Linq.WhereClauseParsers
 
         private static bool IsIndex( MemberExpression left )
         {
-            return left.Member.CustomAttributes.Any( x => x.AttributeType == typeof( T ) );
+            return left.Member.HasAttribute<T>();
         }
 
         public abstract ReqlExpr Parse( ReqlExpr expression, QueryModel queryModel, Expression predicate );
 
         protected static object GetValue( BinaryExpression binaryExpression )
         {
-            var left = binaryExpression.Left as ConstantExpression;
-            return left != null ? left.Value : ( (ConstantExpression)binaryExpression.Right ).Value;
+            return binaryExpression.GetConstantExpression().Value;
         }
     }
 }

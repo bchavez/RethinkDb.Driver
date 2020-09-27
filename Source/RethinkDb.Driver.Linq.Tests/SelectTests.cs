@@ -50,6 +50,9 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
 
             Assert.AreEqual( 3, result.Count );
+            Assert.IsTrue( result.Contains( "Name1" ) );
+            Assert.IsTrue( result.Contains( "Name2" ) );
+            Assert.IsTrue( result.Contains( "Name3" ) );
         }
 
         [Test]
@@ -69,6 +72,9 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
 
             Assert.AreEqual( 3, result.Count );
+            Assert.IsTrue( result.Any( x => x.Name == "Name1" ) );
+            Assert.IsTrue( result.Any( x => x.Name == "Name2" ) );
+            Assert.IsTrue( result.Any( x => x.Name == "Name3" ) );
         }
 
         [Test]
@@ -92,6 +98,8 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
 
             Assert.AreEqual( 2, result.Count );
+            Assert.IsTrue( result.Any( x => x.Area == "Area1" ) );
+            Assert.IsTrue( result.Any( x => x.Area == "Area2" ) );
         }
 
         [Test]
@@ -116,6 +124,8 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
 
             Assert.AreEqual( 2, result.Count );
+            Assert.IsTrue( result.Any( x => x.Area == "Area1" && x.PlacesCount == 2 ) );
+            Assert.IsTrue( result.Any( x => x.Area == "Area2" && x.PlacesCount == 1 ) );
         }
 
         [Test]
@@ -141,6 +151,11 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
 
             Assert.AreEqual( 2, result.Count );
+            var firstResult = result.First();
+            Assert.AreEqual( "Area1", firstResult.Area );
+
+            Assert.IsTrue( firstResult.Places.Any( x => x.Name == "Name1" && x.Size == 10 ) );
+            Assert.IsTrue( firstResult.Places.Any( x => x.Name == "Name2" && x.Size == 20 ) );
         }
 
         [Test]
@@ -165,6 +180,8 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
 
             Assert.AreEqual( 2, result.Count );
+            Assert.IsTrue( result.Any( x => x.Area == "Area1" && x.PlacesCount == 2 ) );
+            Assert.IsTrue( result.Any( x => x.Area == "Area2" && x.PlacesCount == 1 ) );
         }
 
         [Test]
@@ -175,7 +192,8 @@ namespace RethinkDb.Driver.Linq.Tests
             var expected = RethinkDB.R.Table( TableName )
                 .Group( "Area" )
                 .Ungroup()
-                .Map( x => RethinkDB.R.HashMap( "Area", x["group"] ).With( "PlacesCount", x["reduction"].Nth(0) ) );
+                .Map( x => RethinkDB.R.HashMap( "Area", x["group"] )
+                    .With( "FirstPlace", x["reduction"].OrderBy( "Name" ).Nth( 0 ) ) );
 
             var queryable = GetQueryable<Place>( TableName, expected );
 
@@ -184,11 +202,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Select( x => new
                 {
                     Area = x.Key,
-                    PlacesCount = x.First()
+                    FirstPlace = x.OrderBy( p => p.Name ).First()
                 } )
                 .ToList();
 
             Assert.AreEqual( 2, result.Count );
+            Assert.IsTrue( result.Any( x => x.Area == "Area1" && x.FirstPlace.Name == "Name1" ) );
         }
 
         public class GroupByResult

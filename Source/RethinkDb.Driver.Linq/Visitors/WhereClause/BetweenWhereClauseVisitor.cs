@@ -8,7 +8,7 @@ using RethinkDb.Driver.Linq.Attributes;
 using RethinkDb.Driver.Linq.Helpers;
 using RethinkDb.Driver.Utils;
 
-namespace RethinkDb.Driver.Linq.WhereClauseVisitors
+namespace RethinkDb.Driver.Linq.Visitors.WhereClause
 {
     internal class BetweenWhereClauseVisitor : IWhereClauseVisitor
     {

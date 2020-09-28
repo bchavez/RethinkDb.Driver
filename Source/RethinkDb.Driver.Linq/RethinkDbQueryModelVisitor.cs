@@ -10,28 +10,31 @@ using Remotion.Linq.Clauses.Expressions;
 using Remotion.Linq.Clauses.ResultOperators;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.Attributes;
+using RethinkDb.Driver.Linq.Visitors.SelectClause;
+using RethinkDb.Driver.Linq.Visitors.WhereClause;
 using RethinkDb.Driver.Linq.WhereClauseParsers;
-using RethinkDb.Driver.Linq.WhereClauseVisitors;
+using RethinkDb.Driver.Model;
 using ExpressionVisitor = RethinkDb.Driver.Linq.WhereClauseParsers.ExpressionVisitor;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Linq
 {
+
     public class RethinkDbQueryModelVisitor : QueryModelVisitorBase
     {
-        private readonly Table _table;
+        private readonly ReqlExpr _expr;
         
         public ReqlAst Query => Stack.Peek();
         public Stack<ReqlExpr> Stack = new Stack<ReqlExpr>();
 
-        public RethinkDbQueryModelVisitor( Table table )
+        public RethinkDbQueryModelVisitor( ReqlExpr expr )
         {
-            _table = table;
+            _expr = expr;
         }
 
         public override void VisitQueryModel( QueryModel queryModel )
         {
-            Stack.Push( _table );
+            Stack.Push( _expr );
             base.VisitQueryModel( queryModel );
         }
 
@@ -83,13 +86,6 @@ namespace RethinkDb.Driver.Linq
             yield return binaryExpression.Right;
         }
 
-        private static ReqlExpr GetSelectReqlAst( Expression selector )
-        {
-            var visitor = new SelectionProjector();
-            visitor.Visit( selector );
-            return visitor.Current;
-        }
-
         public override void VisitOrderByClause( OrderByClause orderByClause, QueryModel queryModel, int index )
         {
             var expression = orderByClause.Orderings[0].Expression as MemberExpression;
@@ -112,27 +108,19 @@ namespace RethinkDb.Driver.Linq
 
         public override void VisitSelectClause( SelectClause selectClause, QueryModel queryModel )
         {
-            if( queryModel.ResultOperators.FirstOrDefault() is AverageResultOperator )
+            var selectClauseVisitors = new ISelectClauseVisitor[]
             {
-                var memberExpression = selectClause.Selector as MemberExpression;
-                var memberNameResolver = new MemberNameResolver( memberExpression );
-                Stack.Push( Stack.Pop().Avg( x => memberNameResolver.Resolve( x ) ) );
-                return;
-            }
-
-            if( queryModel.ResultOperators.FirstOrDefault() is CountResultOperator )
-            {
-                Stack.Push( Stack.Pop().Count( ) );
-                return;
-            }
-
-            var expr = GetSelectReqlAst( selectClause.Selector );
-            if( !ReferenceEquals( expr, null ) )
-            {
-                
-            }
-
-            base.VisitSelectClause( selectClause, queryModel );
+                new AverageSelectClauseVisitor(),
+                new CountSelectClauseVisitor(),
+                new MemberSelectClauseVisitor(),
+                new NewObjectSelectClauseVisitor(),
+            };
+            
+            var visitor = selectClauseVisitors.FirstOrDefault( x => x.IsAppropriate( selectClause, queryModel ) );
+            if ( visitor == null )
+                base.VisitSelectClause( selectClause, queryModel );
+            else
+                visitor.Visit( selectClause, queryModel, Stack );
         }
 
         protected override void VisitBodyClauses( ObservableCollection<IBodyClause> bodyClauses, QueryModel queryModel )

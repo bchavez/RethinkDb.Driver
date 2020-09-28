@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using Remotion.Linq;
 using RethinkDb.Driver.Ast;
 
-namespace RethinkDb.Driver.Linq.WhereClauseVisitors
+namespace RethinkDb.Driver.Linq.Visitors.WhereClause
 {
     internal interface IWhereClauseVisitor
     {

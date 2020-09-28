@@ -5,7 +5,7 @@ using Remotion.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.WhereClauseParsers;
 
-namespace RethinkDb.Driver.Linq.WhereClauseVisitors
+namespace RethinkDb.Driver.Linq.Visitors.WhereClause
 {
     internal class DefaultWhereClauseVisitor : IWhereClauseVisitor
     {

@@ -110,6 +110,7 @@ namespace RethinkDb.Driver.Linq
         {
             var selectClauseVisitors = new ISelectClauseVisitor[]
             {
+                new MathematicalSelectClauseVisitor(),
                 new AverageSelectClauseVisitor(),
                 new CountSelectClauseVisitor(),
                 new MemberSelectClauseVisitor(),

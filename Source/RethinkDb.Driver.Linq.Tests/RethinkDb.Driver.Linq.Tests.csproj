@@ -99,6 +99,7 @@
     <Compile Include="LastOrDefaultTests.cs" />
     <Compile Include="LastTests.cs" />
     <Compile Include="LinqExamples.cs" />
+    <Compile Include="MathematicalTests.cs" />
     <Compile Include="NamingStrategyTests.cs" />
     <Compile Include="OrderByTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
